@@ -49,15 +49,16 @@ public class TestUIBuilder : MonoBehaviour
     public class TestClass
     {
         [InputHint("Enter Firstname")]
-        public string firstname;
-        public string surname;
+        public string firstname { get; set; }
+        public string surname { get; set; }
         [InputHint("Email")]
-        public string address;
-        public bool isDeveloper;
-        public bool isPatron;
-        public bool subscribeToSpam;
+        public string address { get; set; }
+        public bool isDeveloper { get; set; }
+        public bool isPatron { get; set; }
+        public bool subscribeToSpam { get; set; }
+        public string[] ArrayTest { get; set; } = new string[] {"A", "B", "C" };
 
-        private string sessionId;
+        private string sessionId { get; set; }
     }
 
 }

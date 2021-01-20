@@ -7,7 +7,6 @@ using UnityEngine;
 public abstract class BaseUIBuilder
 {
     protected PropertyInfo[] m_propertyInfos;
-    protected List<FieldInfo> m_fieldInfos = new List<FieldInfo>();
 
     public abstract Type BuilderType();
     public abstract void BuildUI<T>(T target, Transform container);
@@ -35,19 +34,6 @@ public abstract class BaseUIBuilder
     public BaseUIBuilder()
     {
         m_propertyInfos = BuilderType().GetProperties(Flags);
-        m_fieldInfos.AddRange(BuilderType().GetFields(Flags));
-        foreach (var info in m_propertyInfos)
-        {
-            m_fieldInfos.Remove(m_fieldInfos.Find(f => f.Name == GetBackingFieldName(info)));
-        }
-    }
-
-
-
-
-    protected string GetBackingFieldName(PropertyInfo pi)
-    {
-        return $"<{pi.Name}>k__BackingField";
     }
 }
 
