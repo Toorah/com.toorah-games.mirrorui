@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff899173511b9424aaf36b9e0cbad4be, type: 3}
+  m_Name: UI Resources
+  m_EditorClassIdentifier: 
+  image: {fileID: 6498424255726657699, guid: 5105104b9d9738d4288b5ea6500fdf52, type: 3}
+  scrollBar: {fileID: 4405151464349102278, guid: ed4313125d3f7244bad910b50dd9d4f4, type: 3}
+  slider: {fileID: 3771347168681483152, guid: d4fcb65265ae29e419d20c5f1e5da792, type: 3}
+  button: {fileID: 8565439331682399268, guid: 6e20dd82657a3d24bbfdf5e1c5dbaba9, type: 3}
+  dropdown: {fileID: 4802854552920205554, guid: 82d46535af416154a905d56df87e6922, type: 3}
+  inputField: {fileID: 1074568440176188663, guid: 7cd47ce6e656e5242a72754cecb4ec67, type: 3}
+  label: {fileID: 5273444342470958426, guid: d17659cd28447eb44a256e6f61ca93e3, type: 3}
+  toggle: {fileID: 7699618744117831753, guid: 8c5035b31b280cd438725f5e34e307b8, type: 3}

@@ -1,8 +1,8 @@
 {
-    "name": "Toorah.MirrorUI",
-    "rootNamespace": "Toorah.MirrorUI",
+    "name": "Toorah.MirrorUI.Test",
+    "rootNamespace": "Toorah.MirrorUI.Test",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:e4ad2d54821397546b5d6552fe225bb8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

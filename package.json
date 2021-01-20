@@ -4,6 +4,9 @@
     "displayName": "Mirror UI",
     "description": "Reflection Based Runtime UI Builder",
     "unity": "2020.1",
+    "dependencies": {
+        "com.unity.textmeshpro": "3.0.3"
+    },
     "author": {
         "name": "Atahan Tugra Kiltan",
         "email": "",
