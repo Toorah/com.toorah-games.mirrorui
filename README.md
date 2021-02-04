@@ -1,4 +1,5 @@
-# com.toorah-games.mirrorui
+# Mirror UI
+An advanced UI generation & usage system
  
 ## Usage
 
