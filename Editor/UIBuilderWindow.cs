@@ -15,6 +15,7 @@ using UnityEngine.UI;
 using static ToorahEditor.MirrorUI.UIBuilderWindow;
 using TMPro;
 using Toorah.MirrorUI;
+using System.Globalization;
 
 namespace ToorahEditor.MirrorUI
 {
@@ -38,8 +39,10 @@ namespace ToorahEditor.MirrorUI
         [SerializeField] Type m_selectedType;
         GUIStyle m_btn;
 
-        PropertyInfo[] m_properties;
-        bool[] m_useProperties;
+        MirrorData[] m_properties;
+        bool[] m_useProperty;
+        MirrorData[] m_fields;
+        bool[] m_useField;
         string m_generatedClass;
 
         string m_className = "TestUI";
@@ -105,8 +108,64 @@ namespace ToorahEditor.MirrorUI
 
         void GetTypeData()
         {
-            m_properties = m_selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
-            m_useProperties = new bool[m_properties.Length];
+            var data = new List<MirrorData>();
+
+            var properties = m_selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            foreach(var p in properties)
+            {
+                data.Add(new MirrorData(p));
+            }
+            m_properties = data.ToArray();
+            m_useProperty = new bool[data.Count];
+            
+            data.Clear();
+
+            var fields = m_selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            foreach (var f in fields)
+            {
+                data.Add(new MirrorData(f));
+            }
+            m_fields = data.ToArray();
+            m_useField = new bool[data.Count];
+        }
+
+        public class MirrorData
+        {
+            public string Name { get; set; }
+            public string Namespace { get; set; }
+            public Type Type { get; set; }
+
+            public PropertyInfo property;
+            public FieldInfo field;
+            public bool isField;
+
+            public readonly bool CanRead;
+            public readonly bool CanWrite;
+
+            public MirrorData(PropertyInfo pi)
+            {
+                Name = pi.Name;
+                Namespace = pi.PropertyType.Namespace;
+                Type = pi.PropertyType;
+
+                property = pi;
+                isField = false;
+
+                CanRead = pi.CanRead;
+                CanWrite = pi.CanWrite;
+            }
+            public MirrorData(FieldInfo fi)
+            {
+                Name = fi.Name;
+                Namespace = fi.FieldType.Namespace;
+                Type = fi.FieldType;
+
+                field = fi;
+                isField = true;
+
+                CanRead = fi.IsPublic;
+                CanWrite = fi.IsPublic && !fi.IsInitOnly;
+            }
         }
 
         void DrawType()
@@ -119,20 +178,39 @@ namespace ToorahEditor.MirrorUI
             GUILayout.Label(m_selectedType.Name);
             GUILayout.Label($"Namespace: {m_selectedType.Namespace}", EditorStyles.miniLabel);
             GUILayout.Space(10);
-            GUILayout.Label($"Properties: ", EditorStyles.centeredGreyMiniLabel);
-            
 
-            for(int i = 0; i < m_properties.Length; i++)
+            using(new GUILayout.HorizontalScope())
             {
-                var prop = m_properties[i];
-                var use = m_useProperties[i];
-
-                if(prop.CanRead && prop.CanWrite)
+                using (new GUILayout.VerticalScope())
                 {
-                    use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.PropertyType.FormatType()}>", use);
-                }
+                    GUILayout.Label($"Fields: ", EditorStyles.centeredGreyMiniLabel);
+                    for (int i = 0; i < m_fields.Length; i++)
+                    {
+                        var prop = m_fields[i];
+                        var use = m_useField[i];
 
-                m_useProperties[i] = use;
+                        if (prop.CanRead && prop.CanWrite)
+                        {
+                            use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.Type.FormatType()}>", use);
+                        }
+                        m_useField[i] = use;
+                    }
+                }
+                using (new GUILayout.VerticalScope())
+                {
+                    GUILayout.Label($"Properties: ", EditorStyles.centeredGreyMiniLabel);
+                    for(int i = 0; i < m_properties.Length; i++)
+                    {
+                        var prop = m_properties[i];
+                        var use = m_useProperty[i];
+
+                        if(prop.CanRead && prop.CanWrite)
+                        {
+                            use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.Type.FormatType()}>", use);
+                        }
+                        m_useProperty[i] = use;
+                    }
+                }
             }
 
             if (GUILayout.Button("Generate"))
@@ -145,95 +223,177 @@ namespace ToorahEditor.MirrorUI
                     AssetDatabase.Refresh();
                 }
             }
-            
 
             StringBuilder sb = new StringBuilder();
-            sb.GenerateNotice();
-            sb.AddUsingStatements("System",
+
+            WriteScript();
+
+            RenderPreview();
+
+
+            void WriteScript()
+            {
+                sb.GenerateNotice();
+                WriteUsingStatements();
+
+                sb.EmptyLine();
+                sb.DefineClass(m_className, m_isMono, m_selectedType.GetScriptType().FormatType());
+
+                WriteFieldVariables();
+                WritePropertyVariables();
+
+                sb.EmptyLine();
+                sb.Tab().DefineMethod($"Link", m_selectedType);
+
+                WriteFieldLogic();
+                WritePropertyLogic();
+
+                sb.Tab().AppendLine("}");
+
+
+
+                sb.AppendLine("}");
+            }
+
+            void WriteUsingStatements()
+            {
+                sb.AddUsingStatements("System",
                                     "System.Collections.Generic",
                                     "UnityEngine",
                                     "UnityEngine.UI",
                                     "TMPro",
                                     "Toorah.MirrorUI");
-            if (!string.IsNullOrEmpty(m_selectedType.Namespace))
-                sb.AddUsingStatements(m_selectedType.Namespace);
+                if (!string.IsNullOrEmpty(m_selectedType.Namespace))
+                    sb.AddUsingStatements(m_selectedType.Namespace);
+            }
 
-            sb.EmptyLine();
-            sb.DefineClass(m_className, m_isMono, m_selectedType.GetScriptType().FormatType());
-
-            for(int i = 0; i < m_properties.Length; i++)
+            void WriteFieldVariables()
             {
-                var prop = m_properties[i];
-                var use = m_useProperties[i];
+                if (m_useField.Count(x => x == true) > 0)
+                {
+                    sb.AppendLine("#region Field UI");
+                    DefineVariables(sb, m_fields, m_useField, 1);
+                    sb.AppendLine("#endregion");
+                }
+            }
+            void WritePropertyVariables()
+            {
+                if (m_useProperty.Count(x => x == true) > 0)
+                {
+                    if (m_useField.Count(x => x == true) > 0)
+                        sb.EmptyLine();
+
+                    sb.AppendLine("#region Property UI");
+                    DefineVariables(sb, m_properties, m_useProperty, 1);
+                    sb.AppendLine("#endregion");
+                }
+            }
+
+            void WriteFieldLogic()
+            {
+                if (m_useField.Count(x => x == true) > 0)
+                {
+                    sb.AppendLine("#region Field Logic");
+                    DefineUsage(sb, m_fields, m_useField, 2);
+                    sb.AppendLine("#endregion");
+                }
+            }
+            void WritePropertyLogic()
+            {
+                if (m_useProperty.Count(x => x == true) > 0)
+                {
+                    if (m_useField.Count(x => x == true) > 0)
+                        sb.EmptyLine();
+
+                    sb.AppendLine("#region Property Logic");
+                    DefineUsage(sb, m_properties, m_useProperty, 2);
+                    sb.AppendLine("#endregion");
+                }
+            }
+
+            void RenderPreview()
+            {
+                m_generatedClass = sb.ToString();
+
+                using (var scope = new GUILayout.ScrollViewScope(m_textScroll))
+                {
+                    m_textScroll = scope.scrollPosition;
+                    GUILayout.Label(m_generatedClass, EditorStyles.helpBox);
+                }
+            }
+        }
+
+        void DefineVariables(StringBuilder sb, MirrorData[] data, bool[] uses, int tab = 0)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                var prop = data[i];
+                var use = uses[i];
 
                 if (use)
                 {
                     //sb.Tab().CreateTypeTooltip(prop.PropertyType);
-                    if (prop.PropertyType.IsEnum)
+                    if (prop.Type.IsEnum)
                     {
-                        sb.Tab().DefineDropdown(prop.Name);
+                        sb.Tab(tab).DefineDropdown(prop.Name);
                     }
-                    else if(prop.PropertyType.IsNumber())
+                    else if (prop.Type.IsNumber())
                     {
-                        sb.Tab().DefineSlider(prop.Name);
+                        sb.Tab(tab).DefineSlider(prop.Name);
                     }
-                    else if (prop.PropertyType.IsText())
+                    else if (prop.Type.IsText())
                     {
-                        sb.Tab().DefineInput(prop.Name);
+                        sb.Tab(tab).DefineInput(prop.Name);
                     }
-                    else if (prop.PropertyType.IsBool())
+                    else if (prop.Type.IsBool())
                     {
-                        sb.Tab().DefineToggle(prop.Name);
+                        sb.Tab(tab).DefineToggle(prop.Name);
                     }
                 }
             }
-
-            sb.EmptyLine();
-            sb.Tab().DefineMethod($"Link", m_selectedType);
+        }
+        void DefineUsage(StringBuilder sb, MirrorData[] data, bool[] uses, int tab = 0)
+        {
             int cnt = 0;
-            for (int i = 0; i < m_properties.Length; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var prop = m_properties[i];
-                var use = m_useProperties[i];
+                var prop = data[i];
+                var use = uses[i];
 
                 if (use)
                 {
-                    if(cnt != 0)
+                    if (cnt != 0)
                         sb.AppendLine("");
 
-                    if (prop.PropertyType.IsEnum)
+                    if (prop.Type.IsEnum)
                     {
-                        sb.LinkDropdown(prop, 2);
+                        sb.LinkDropdown(prop, tab);
                     }
-                    else if (prop.PropertyType.IsNumber())
+                    else if (prop.Type.IsNumber())
                     {
-                        sb.LinkSlider(prop, 2, new SliderOptions(prop.PropertyType));
+                        float min = 0;
+                        float max = 1;
+
+                        if (prop.isField ? prop.field.TryGetRangeAttribute(out min, out max) : prop.property.TryGetRangeAttribute(out min, out max))
+                        {
+                            sb.LinkSlider(prop, min, max, tab);
+                        }
+                        else
+                        {
+                            sb.LinkSlider(prop, null, null, tab);
+                        }
                     }
-                    else if (prop.PropertyType.IsText())
+                    else if (prop.Type.IsText())
                     {
-                        sb.LinkInputField(prop, 2);
+                        sb.LinkInputField(prop, tab);
                     }
-                    else if (prop.PropertyType.IsBool())
+                    else if (prop.Type.IsBool())
                     {
-                        sb.LinkToggle(prop, 2);
+                        sb.LinkToggle(prop, tab);
                     }
 
                     cnt++;
                 }
-            }
-
-            sb.Tab().AppendLine("}");
-
-
-
-            sb.AppendLine("}");
-
-            m_generatedClass = sb.ToString();
-
-            using(var scope = new GUILayout.ScrollViewScope(m_textScroll))
-            {
-                m_textScroll = scope.scrollPosition;
-                GUILayout.Label(m_generatedClass, EditorStyles.helpBox);
             }
         }
 
@@ -278,28 +438,7 @@ namespace ToorahEditor.MirrorUI
                 }
             }
         }
-        public struct SliderOptions
-        {
-            public float? min;
-            public float? max;
 
-            public Type sliderType;
-
-
-            public SliderOptions(Type type)
-            {
-                sliderType = type;
-                min = null;
-                max = null;
-            }
-
-            public SliderOptions(Type type, float? min, float? max)
-            {
-                sliderType = type;
-                this.min = min;
-                this.max = max;
-            }
-        }
     }
 
 
@@ -399,7 +538,7 @@ namespace ToorahEditor.MirrorUI
             return sb;
         }
 
-        public static StringBuilder LinkDropdown(this StringBuilder sb, PropertyInfo prop, int tab = 0)
+        public static StringBuilder LinkDropdown(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var dropdownName = $"dropdown_{prop.Name}";
             var instanceName = $"instance.{prop.Name}";
@@ -408,34 +547,39 @@ namespace ToorahEditor.MirrorUI
             return sb;
         }
 
-        public static StringBuilder LinkSlider(this StringBuilder sb, PropertyInfo prop, int tab = 0, SliderOptions? options = null)
+        public static StringBuilder LinkSlider(this StringBuilder sb, MirrorData prop, float? min = null, float? max = null, int tab = 0)
         {
             var sliderName = $"slider_{prop.Name}";
             var instanceName = $"instance.{prop.Name}";
-            var cast = "";
+            //var cast = "";
 
-            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.value)} = (float){instanceName};");
-            if(options.HasValue)
-            {
-                if(options.Value.min.HasValue)
-                    sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.minValue)} = {options.Value.min.Value};");
-                if(options.Value.max.HasValue)
-                    sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.maxValue)} = {options.Value.max.Value};");
+            string minText = min.HasValue ? min.Value.ToString(CultureInfo.InvariantCulture) : "null";
+            string maxText = max.HasValue ? max.Value.ToString(CultureInfo.InvariantCulture) : "null";
+
+            sb.Tab(tab).AppendLine($"{nameof(UILinker)}.{nameof(UILinker.LinkSlider)}({sliderName}, {instanceName}, {minText}, {maxText}, v => {instanceName} = v);");
+
+            //sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.value)} = (float){instanceName};");
+            //if(options.HasValue)
+            //{
+            //    if(options.Value.min.HasValue)
+            //        sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.minValue)} = {options.Value.min.Value};");
+            //    if(options.Value.max.HasValue)
+            //        sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.maxValue)} = {options.Value.max.Value};");
 
 
-                cast = $"({options.Value.sliderType.GetScriptType().FormatType()})";
-                if (options.Value.sliderType.IsInteger())
-                {
-                    sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.wholeNumbers)} = true;");
-                }
-            }
-            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.onValueChanged)}.{nameof(Slider.SliderEvent.AddListener)}(v => {instanceName} = {cast}v);");
+            //    cast = $"({options.Value.sliderType.GetScriptType().FormatType()})";
+            //    if (options.Value.sliderType.IsInteger())
+            //    {
+            //        sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.wholeNumbers)} = true;");
+            //    }
+            //}
+            //sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.onValueChanged)}.{nameof(Slider.SliderEvent.AddListener)}(v => {instanceName} = {cast}v);");
 
             return sb;
         }
 
 
-        public static StringBuilder LinkInputField(this StringBuilder sb, PropertyInfo prop, int tab = 0)
+        public static StringBuilder LinkInputField(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var inputName = $"input_{prop.Name}";
             var instanceName = $"instance.{prop.Name}";
@@ -443,7 +587,7 @@ namespace ToorahEditor.MirrorUI
 
             return sb;
         }
-        public static StringBuilder LinkToggle(this StringBuilder sb, PropertyInfo prop, int tab = 0)
+        public static StringBuilder LinkToggle(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var toggleName = $"toggle_{prop.Name}";
             var instanceName = $"instance.{prop.Name}";
@@ -452,7 +596,7 @@ namespace ToorahEditor.MirrorUI
             return sb;
         }
 
-
+        
 
         public static string FormatType(this Type type)
         {
@@ -493,6 +637,9 @@ namespace ToorahEditor.MirrorUI
                     break;
                 case "UInt16":
                     p = "ushort";
+                    break;
+                case "Null":
+                    p = "null";
                     break;
             }
 

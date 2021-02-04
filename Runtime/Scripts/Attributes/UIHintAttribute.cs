@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace Toorah.MirrorUI
 {
-    public class InputHintAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+    public class UIHintAttribute : Attribute
     {
         public string hintText;
 
-        public InputHintAttribute(string text)
+        public UIHintAttribute(string text)
         {
             hintText = text;
         }

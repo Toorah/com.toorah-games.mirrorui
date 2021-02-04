@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Globalization;
+using System.Reflection;
 
 namespace Toorah.MirrorUI
 {
@@ -93,10 +94,12 @@ namespace Toorah.MirrorUI
             slider.value = value;
             slider.onValueChanged.AddListener(v => callback?.Invoke(v));
         }
-        public static void LinkSlider(this Slider slider, float value, float min, float max, Action<float> callback)
+        public static void LinkSlider(this Slider slider, float value, float? min, float? max, Action<float> callback)
         {
-            slider.minValue = min;
-            slider.maxValue = max;
+            if(min.HasValue)
+                slider.minValue = min.Value;
+            if(max.HasValue)
+                slider.maxValue = max.Value;
             slider.LinkSlider(value, callback);
         }
         #endregion
@@ -210,65 +213,6 @@ namespace Toorah.MirrorUI
                     callback?.Invoke(res);
                 }
             });
-        }
-        #endregion
-    }
-
-    public static class Mirror
-    {
-        #region Check Types
-        public static bool IsText(this Type type)
-        {
-            return Type.GetTypeCode(type) == TypeCode.String;
-        }
-        public static bool IsBool(this Type type)
-        {
-            return Type.GetTypeCode(type) == TypeCode.Boolean;
-        }
-        public static bool IsNumber(this Type type)
-        {
-            return type.IsDecimal() || type.IsInteger();
-        }
-        public static bool IsDecimal(this Type type)
-        {
-            switch (Type.GetTypeCode(type))
-            {
-                case TypeCode.Single:
-                case TypeCode.Double:
-                case TypeCode.Decimal:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        public static bool IsInteger(this Type type)
-        {
-            GetNames<TypeCode>();
-            int[] v = GetValues<TypeCode, int>();
-
-            switch (Type.GetTypeCode(type))
-            {
-                case TypeCode.Int16:
-                case TypeCode.UInt16:
-                case TypeCode.Int32:
-                case TypeCode.UInt32:
-                case TypeCode.Int64:
-                case TypeCode.UInt64:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        #endregion
-
-        #region Enum
-        public static T[] GetValues<TEnum, T>() where TEnum : Enum
-        {
-            return (T[])Enum.GetValues(typeof(TEnum));
-        }
-        public static string[] GetNames<TEnum>() where TEnum : Enum
-        {
-            return Enum.GetNames(typeof(TEnum));
         }
         #endregion
     }

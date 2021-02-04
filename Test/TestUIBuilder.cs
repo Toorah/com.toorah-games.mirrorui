@@ -50,10 +50,10 @@ namespace ToorahUI.Test
         [System.Serializable]
         public class TestClass
         {
-            [InputHint("Enter Firstname")]
+            [UIHint("Enter Firstname")]
             public string firstname { get; set; }
             public string surname { get; set; }
-            [InputHint("Email")]
+            [UIHint("Email")]
             public string address { get; set; }
             public bool isDeveloper { get; set; }
             public bool isPatron { get; set; }

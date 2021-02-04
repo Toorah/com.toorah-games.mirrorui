@@ -47,7 +47,7 @@ public class GenericUIBuilder<T> : BaseUIBuilder<T>
                     inputField.onValueChanged.AddListener(s => info.SetValue(target, s));
 
 
-                    info.AttributeAction<InputHintAttribute>((a) => 
+                    info.AttributeAction<UIHintAttribute>((a) => 
                     {
                         inputField.placeholder.GetComponent<TextMeshProUGUI>().text = a.hintText;
                     });
