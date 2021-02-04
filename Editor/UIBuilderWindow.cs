@@ -14,6 +14,7 @@ using System.IO;
 using UnityEngine.UI;
 using static ToorahEditor.MirrorUI.UIBuilderWindow;
 using TMPro;
+using Toorah.MirrorUI;
 
 namespace ToorahEditor.MirrorUI
 {
@@ -33,7 +34,7 @@ namespace ToorahEditor.MirrorUI
         string m_searchText = "";
         string m_lastSearch = "";
         SearchField m_searchField;
-        Vector2 m_scroll;
+        Vector2 m_searchScroll;
         [SerializeField] Type m_selectedType;
         GUIStyle m_btn;
 
@@ -43,6 +44,7 @@ namespace ToorahEditor.MirrorUI
 
         string m_className = "TestUI";
         bool m_isMono = true;
+        Vector2 m_textScroll;
 
         private void OnEnable()
         {
@@ -54,15 +56,25 @@ namespace ToorahEditor.MirrorUI
 
         private void OnGUI()
         {
-            if(m_btn == null)
+            SetEditorStyles();
+
+            DrawSearchBar();
+            DrawBody();
+            DrawResults();
+        }
+
+        void SetEditorStyles()
+        {
+            if (m_btn == null)
             {
                 m_btn = new GUIStyle("button");
                 m_btn.alignment = TextAnchor.UpperLeft;
             }
-
-
+        }
+        void DrawSearchBar()
+        {
             var rect = GUILayoutUtility.GetRect(0, 0, GUILayout.ExpandWidth(true), GUILayout.Height(EditorGUIUtility.singleLineHeight));
-            using(var change = new EditorGUI.ChangeCheckScope())
+            using (var change = new EditorGUI.ChangeCheckScope())
             {
                 m_searchText = m_searchField.OnGUI(rect, m_searchText);
                 if (change.changed)
@@ -70,8 +82,10 @@ namespace ToorahEditor.MirrorUI
                     OnSearched(m_searchText);
                 }
             }
-
-            if(m_selectedType != null)
+        }
+        void DrawBody()
+        {
+            if (m_selectedType != null)
             {
                 DrawType();
             }
@@ -79,12 +93,15 @@ namespace ToorahEditor.MirrorUI
             {
                 EditorGUILayout.HelpBox("Select a Type by searching for it", MessageType.Info);
             }
-
-            if(m_searchText != "" && m_searchText == m_lastSearch)
+        }
+        void DrawResults()
+        {
+            if (m_searchText != "" && m_searchText == m_lastSearch)
             {
                 Results();
             }
         }
+
 
         void GetTypeData()
         {
@@ -123,7 +140,7 @@ namespace ToorahEditor.MirrorUI
                 var path = EditorUtility.SaveFilePanel("Save Script", "", m_className, "cs");
                 if(path != "")
                 {
-                    File.WriteAllText(path, m_generatedClass);
+                    File.WriteAllText(path, m_generatedClass.SpacesToTabs());
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();
                 }
@@ -133,6 +150,7 @@ namespace ToorahEditor.MirrorUI
             StringBuilder sb = new StringBuilder();
             sb.GenerateNotice();
             sb.AddUsingStatements("System",
+                                    "System.Collections.Generic",
                                     "UnityEngine",
                                     "UnityEngine.UI",
                                     "TMPro",
@@ -150,8 +168,12 @@ namespace ToorahEditor.MirrorUI
 
                 if (use)
                 {
-                    sb.Tab().CreateTypeTooltip(prop.PropertyType);
-                    if(prop.PropertyType.IsNumber())
+                    //sb.Tab().CreateTypeTooltip(prop.PropertyType);
+                    if (prop.PropertyType.IsEnum)
+                    {
+                        sb.Tab().DefineDropdown(prop.Name);
+                    }
+                    else if(prop.PropertyType.IsNumber())
                     {
                         sb.Tab().DefineSlider(prop.Name);
                     }
@@ -179,7 +201,11 @@ namespace ToorahEditor.MirrorUI
                     if(cnt != 0)
                         sb.AppendLine("");
 
-                    if (prop.PropertyType.IsNumber())
+                    if (prop.PropertyType.IsEnum)
+                    {
+                        sb.LinkDropdown(prop, 2);
+                    }
+                    else if (prop.PropertyType.IsNumber())
                     {
                         sb.LinkSlider(prop, 2, new SliderOptions(prop.PropertyType));
                     }
@@ -204,7 +230,11 @@ namespace ToorahEditor.MirrorUI
 
             m_generatedClass = sb.ToString();
 
-            GUILayout.Label(m_generatedClass, EditorStyles.helpBox);
+            using(var scope = new GUILayout.ScrollViewScope(m_textScroll))
+            {
+                m_textScroll = scope.scrollPosition;
+                GUILayout.Label(m_generatedClass, EditorStyles.helpBox);
+            }
         }
 
         async void OnSearched(string searchText)
@@ -226,15 +256,13 @@ namespace ToorahEditor.MirrorUI
             m_lastSearch = searchText;
             Repaint();
         }
-
-
         void Results()
         {
             using (new GUILayout.AreaScope(new Rect(0, EditorGUIUtility.singleLineHeight, position.width, 200), GUIContent.none, "window"))
             {
-                using(var scope = new GUILayout.ScrollViewScope(m_scroll, GUILayout.ExpandWidth(true)))
+                using(var scope = new GUILayout.ScrollViewScope(m_searchScroll, GUILayout.ExpandWidth(true)))
                 {
-                    m_scroll = scope.scrollPosition;
+                    m_searchScroll = scope.scrollPosition;
 
                     foreach(var t in m_searchTypes)
                     {
@@ -277,7 +305,7 @@ namespace ToorahEditor.MirrorUI
 
     public static class StringEx
     {
-
+        static readonly string TabsAsSpaces = "    ";
 
         public static StringBuilder GenerateNotice(this StringBuilder sb, params string[] lines)
         {
@@ -297,7 +325,7 @@ namespace ToorahEditor.MirrorUI
 
         public static StringBuilder Tab(this StringBuilder sb)
         {
-            return sb.Append("   ");
+            return sb.Append(TabsAsSpaces);
         }
 
         public static StringBuilder Tab(this StringBuilder sb, int tabs)
@@ -306,6 +334,11 @@ namespace ToorahEditor.MirrorUI
                 sb.Tab();
 
             return sb;
+        }
+
+        public static string SpacesToTabs(this string text)
+        {
+            return text.Replace(TabsAsSpaces, "\t");
         }
 
         public static StringBuilder TabLine(this StringBuilder sb)
@@ -329,7 +362,7 @@ namespace ToorahEditor.MirrorUI
         {
             if (isMono)
             {
-                sb.AppendLine($"public class {className} : MonoBehaviour, IUiLinkable<{typeName}> {{");
+                sb.AppendLine($"public class {className} : {nameof(MonoBehaviour)}, IUiLinkable<{typeName}> {{");
             }
             else
             {
@@ -344,17 +377,21 @@ namespace ToorahEditor.MirrorUI
         {
             return sb.AppendLine($"[Tooltip(\"{type.GetScriptType().FormatType()}\")]");
         }
+        public static StringBuilder DefineDropdown(this StringBuilder sb, string name)
+        {
+            return sb.AppendLine($"public {nameof(TMP_Dropdown)} dropdown_{name};");
+        }
         public static StringBuilder DefineSlider(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public Slider slider_{name};");
+            return sb.AppendLine($"public {nameof(Slider)} slider_{name};");
         }
         public static StringBuilder DefineToggle(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public Toggle toggle_{name};");
+            return sb.AppendLine($"public {nameof(Toggle)} toggle_{name};");
         }
         public static StringBuilder DefineInput(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public TMP_InputField input_{name};");
+            return sb.AppendLine($"public {nameof(TMP_InputField)} input_{name};");
         }
         public static StringBuilder DefineMethod(this StringBuilder sb, string methodName, Type type)
         {
@@ -362,14 +399,22 @@ namespace ToorahEditor.MirrorUI
             return sb;
         }
 
+        public static StringBuilder LinkDropdown(this StringBuilder sb, PropertyInfo prop, int tab = 0)
+        {
+            var dropdownName = $"dropdown_{prop.Name}";
+            var instanceName = $"instance.{prop.Name}";
+            sb.Tab(tab).AppendLine($"{nameof(UILinker)}.{nameof(LinkDropdown)}({dropdownName}, {instanceName}, r => {instanceName} = r);");
+
+            return sb;
+        }
 
         public static StringBuilder LinkSlider(this StringBuilder sb, PropertyInfo prop, int tab = 0, SliderOptions? options = null)
         {
-
             var sliderName = $"slider_{prop.Name}";
+            var instanceName = $"instance.{prop.Name}";
             var cast = "";
 
-            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.value)} = (float)instance.{prop.Name};");
+            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.value)} = (float){instanceName};");
             if(options.HasValue)
             {
                 if(options.Value.min.HasValue)
@@ -378,34 +423,36 @@ namespace ToorahEditor.MirrorUI
                     sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.maxValue)} = {options.Value.max.Value};");
 
 
-                cast = $"({options.Value.sliderType.FormatType()})";
+                cast = $"({options.Value.sliderType.GetScriptType().FormatType()})";
                 if (options.Value.sliderType.IsInteger())
                 {
                     sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.wholeNumbers)} = true;");
                 }
             }
-            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.onValueChanged)}.{nameof(Slider.SliderEvent.AddListener)}(v => instance.{prop.Name} = {cast}v);");
-
+            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.onValueChanged)}.{nameof(Slider.SliderEvent.AddListener)}(v => {instanceName} = {cast}v);");
 
             return sb;
         }
+
+
         public static StringBuilder LinkInputField(this StringBuilder sb, PropertyInfo prop, int tab = 0)
         {
             var inputName = $"input_{prop.Name}";
+            var instanceName = $"instance.{prop.Name}";
+            sb.Tab(tab).AppendLine($"{inputName}.{nameof(UILinker.LinkInput)}({instanceName}, s => {instanceName} = s);");
 
-            sb.Tab(tab).AppendLine($"{inputName}.{nameof(TMP_InputField.text)} = instance.{prop.Name};");
-            sb.Tab(tab).AppendLine($"{inputName}.{nameof(TMP_InputField.onValueChanged)}.{nameof(TMP_InputField.OnChangeEvent.AddListener)}(v => instance.{prop.Name} = v);");
             return sb;
         }
         public static StringBuilder LinkToggle(this StringBuilder sb, PropertyInfo prop, int tab = 0)
         {
-            var inputName = $"toggle_{prop.Name}";
-
-            sb.Tab(tab).AppendLine($"{inputName}.{nameof(Toggle.isOn)} = instance.{prop.Name};");
-            sb.Tab(tab).AppendLine($"{inputName}.{nameof(Toggle.onValueChanged)}.{nameof(Toggle.ToggleEvent.AddListener)}(v => instance.{prop.Name} = v);");
+            var toggleName = $"toggle_{prop.Name}";
+            var instanceName = $"instance.{prop.Name}";
+            sb.Tab(tab).AppendLine($"{toggleName}.{nameof(UILinker.LinkToggle)}({instanceName}, b => {instanceName} = b);");
 
             return sb;
         }
+
+
 
         public static string FormatType(this Type type)
         {
@@ -451,54 +498,9 @@ namespace ToorahEditor.MirrorUI
 
             return p;
         }
-
         public static string GetScriptType(this Type type)
         {
             return type.FullName.Replace($"{type.Namespace}.", "").Replace("+", ".").Replace(" ", "");
-        }
-    }
-
-
-    public static class Mirror
-    {
-        public static bool IsText(this Type type)
-        {
-            return Type.GetTypeCode(type) == TypeCode.String;
-        }
-        public static bool IsBool(this Type type)
-        {
-            return Type.GetTypeCode(type) == TypeCode.Boolean;
-        }
-        public static bool IsNumber(this Type type)
-        {
-            return type.IsDecimal() || type.IsInteger();
-        }
-        public static bool IsDecimal(this Type type)
-        {
-            switch (Type.GetTypeCode(type))
-            {
-                case TypeCode.Single:
-                case TypeCode.Double:
-                case TypeCode.Decimal:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        public static bool IsInteger(this Type type)
-        {
-            switch(Type.GetTypeCode(type))
-            {
-                case TypeCode.Int16:
-                case TypeCode.UInt16:
-                case TypeCode.Int32:
-                case TypeCode.UInt32:
-                case TypeCode.Int64:
-                case TypeCode.UInt64:
-                    return true;
-                default:
-                    return false;
-            }
         }
     }
 }
