@@ -2,6 +2,9 @@
 
 # Mirror UI
 An advanced UI generation & usage system
+
+## Install
+Install via Package Manager
  
 ## Usage
 
