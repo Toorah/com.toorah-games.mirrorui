@@ -6,7 +6,11 @@ An advanced UI generation & usage system
 ## Install
 Install via Package Manager
  
-## Usage
+## Usage (WIP)
+Use the UIBuilder EditorWindow to generate UILinker scripts for your classes.
+WIP
+ 
+## Usage (Legacy / Runtime Generator)
 
 Take the **Canvas** Prefab from `com.toorah-games.mirrorui/Prefabs/` and place it in your scene.
 Make sure you also have an `EventSystem`.
