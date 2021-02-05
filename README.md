@@ -1,5 +1,7 @@
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I5RJP3)
 
+<img src="Documentation~/logo.png">
+
 # Mirror UI
 An advanced UI generation & usage system
 
