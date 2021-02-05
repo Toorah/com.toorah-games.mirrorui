@@ -46,7 +46,7 @@ namespace Toorah.MirrorUI
         /// <param name="dropdown">Reference to a Dropdown</param>
         /// <param name="e">Current Enum Value</param>
         /// <param name="callback">Callback when the dropdown value changes</param>
-        public static void LinkDropdown<TEnum>(TMP_Dropdown dropdown, TEnum e, Action<TEnum> callback) where TEnum : Enum
+        public static void LinkDropdown<TEnum>(this TMP_Dropdown dropdown, TEnum e, Action<TEnum> callback) where TEnum : Enum
         {
             var type = e.GetType();
             var stringValue = e.ToString();
@@ -70,7 +70,7 @@ namespace Toorah.MirrorUI
         /// <param name="values">IEnumerable of <typeparamref name="T"/></param>
         /// <param name="callback">Callback that is raised when the dropdown changes</param>
         /// <param name="toString">Optional Function to convert <typeparamref name="T"/> to string, if NULL it uses <see cref="DefaultFunc{T}(T)"/></param>
-        public static void LinkDropdown<T>(TMP_Dropdown dropdown, T val, IEnumerable<T> values, Action<T> callback, Func<T, string> toString = null)
+        public static void LinkDropdown<T>(this TMP_Dropdown dropdown, T val, IEnumerable<T> values, Action<T> callback, Func<T, string> toString = null)
         {
             List<T> valuesList = values.ToList();
 

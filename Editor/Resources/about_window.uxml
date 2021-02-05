@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="editorStyleSheet.uss" />
+    <ui:VisualElement style="-unity-text-align: upper-center; align-items: center; justify-content: center; flex-shrink: 0;">
+        <ui:VisualElement style="background-image: resource(&apos;logo&apos;); width: 256px; height: 128px; -unity-text-align: upper-center;" />
+    </ui:VisualElement>
+    <ui:VisualElement style="margin-top: 10px; align-items: flex-start; -unity-text-align: upper-left; margin-left: 50px; flex-shrink: 0;">
+        <ui:Label text="2021 © Atahan Tuğra Kiltan" display-tooltip-when-elided="true" />
+    </ui:VisualElement>
+    <ui:VisualElement style="height: auto; width: auto; flex-grow: 1; flex-shrink: 0;" />
+    <ui:VisualElement style="flex-direction: row; justify-content: center; flex-shrink: 0;">
+        <ui:Button display-tooltip-when-elided="true" name="btn-git" tooltip="View on GitHub" focusable="true" usage-hints="None" class="link">
+            <ui:VisualElement class="btn-icon" style="background-image: resource(&apos;git_white&apos;);" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="btn-twitter" tooltip="Follow me on Twitter" focusable="true" tabindex="1" class="link">
+            <ui:VisualElement class="btn-icon" style="background-image: resource(&apos;twitter_white&apos;);" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="btn-kofi" tooltip="Support me on Ko-fi" focusable="true" tabindex="2" class="link">
+            <ui:VisualElement class="btn-icon" style="background-image: resource(&apos;kofi&apos;); width: 100%; height: 100%;" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

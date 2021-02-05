@@ -1,5 +1,3 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,14 +19,27 @@ namespace ToorahEditor.MirrorUI
 {
     public class UIBuilderWindow : EditorWindow
     {
-        [MenuItem("UI/Builder")]
+        [MenuItem("Mirror UI/Builder", priority = 0)]
         static void Open()
         {
             var window = GetWindow<UIBuilderWindow>();
-            window.titleContent.text = "UI Builder";
+            window.titleContent = new GUIContent("UI Builder", Resources.Load<Texture>("mirror"), "Mirror UI Builder Window");
             window.Show();
         }
 
+        public const string HEX_Comment     = "559a40";
+        public const string HEX_Keyword     = "569cd6";
+        public const string HEX_Variable    = "9cdcfe";
+        public const string HEX_Class       = "4ec9b0";
+        public const string HEX_Interface   = "b8d7a3";
+        public const string HEX_Summary     = "608b4c";
+        public const string HEX_Method      = "d4dcaa";
+        public const string HEX_String      = "d19d85";
+        public const string HEX_Region      = "7c8b95";
+        public const string HEX_Lambda      = "b4b4b4";
+        public const string HEX_StructEtc   = "b5cea8";
+
+        
 
         Type[] m_allTypes;
         HashSet<Type> m_searchTypes = new HashSet<Type>();
@@ -37,7 +48,10 @@ namespace ToorahEditor.MirrorUI
         SearchField m_searchField;
         Vector2 m_searchScroll;
         [SerializeField] Type m_selectedType;
+        [SerializeField] string m_selectedTypeString = string.Empty;
         GUIStyle m_btn;
+        GUIStyle m_label;
+        GUIStyle m_labelRight;
 
         MirrorData[] m_properties;
         bool[] m_useProperty;
@@ -55,6 +69,15 @@ namespace ToorahEditor.MirrorUI
 
             m_allTypes = AppDomain.CurrentDomain.GetAssemblies()
                        .SelectMany(assembly => assembly.GetTypes()).ToArray();
+
+            if (!string.IsNullOrEmpty(m_selectedTypeString))
+            {
+                m_selectedType = m_allTypes.First(x => x.FullName == m_selectedTypeString);
+                if(m_selectedType != null)
+                {
+                    GetTypeData();
+                }
+            }
         }
 
         private void OnGUI()
@@ -72,6 +95,16 @@ namespace ToorahEditor.MirrorUI
             {
                 m_btn = new GUIStyle("button");
                 m_btn.alignment = TextAnchor.UpperLeft;
+            }
+            if (m_label == null)
+            {
+                m_label = new GUIStyle(EditorStyles.helpBox);
+                m_label.richText = true;
+            }
+            if (m_labelRight == null)
+            {
+                m_labelRight = new GUIStyle(m_label);
+                m_labelRight.alignment = TextAnchor.UpperRight;
             }
         }
         void DrawSearchBar()
@@ -99,9 +132,19 @@ namespace ToorahEditor.MirrorUI
         }
         void DrawResults()
         {
-            if (m_searchText != "" && m_searchText == m_lastSearch)
+            if (m_searchText != "")
             {
-                Results();
+                using (new GUILayout.AreaScope(new Rect(0, EditorGUIUtility.singleLineHeight, position.width, 200), GUIContent.none, "window"))
+                {
+                    using (var scope = new GUILayout.ScrollViewScope(m_searchScroll, GUILayout.ExpandWidth(true)))
+                    {
+                        m_searchScroll = scope.scrollPosition;
+                        if(m_searchText == m_lastSearch)
+                        {
+                            Results();
+                        }
+                    }
+                }
             }
         }
 
@@ -129,44 +172,7 @@ namespace ToorahEditor.MirrorUI
             m_useField = new bool[data.Count];
         }
 
-        public class MirrorData
-        {
-            public string Name { get; set; }
-            public string Namespace { get; set; }
-            public Type Type { get; set; }
-
-            public PropertyInfo property;
-            public FieldInfo field;
-            public bool isField;
-
-            public readonly bool CanRead;
-            public readonly bool CanWrite;
-
-            public MirrorData(PropertyInfo pi)
-            {
-                Name = pi.Name;
-                Namespace = pi.PropertyType.Namespace;
-                Type = pi.PropertyType;
-
-                property = pi;
-                isField = false;
-
-                CanRead = pi.CanRead;
-                CanWrite = pi.CanWrite;
-            }
-            public MirrorData(FieldInfo fi)
-            {
-                Name = fi.Name;
-                Namespace = fi.FieldType.Namespace;
-                Type = fi.FieldType;
-
-                field = fi;
-                isField = true;
-
-                CanRead = fi.IsPublic;
-                CanWrite = fi.IsPublic && !fi.IsInitOnly;
-            }
-        }
+        
 
         void DrawType()
         {
@@ -179,9 +185,9 @@ namespace ToorahEditor.MirrorUI
             GUILayout.Label($"Namespace: {m_selectedType.Namespace}", EditorStyles.miniLabel);
             GUILayout.Space(10);
 
-            using(new GUILayout.HorizontalScope())
+            using(new GUILayout.HorizontalScope(GUILayout.ExpandHeight(false)))
             {
-                using (new GUILayout.VerticalScope())
+                using (new GUILayout.VerticalScope(EditorStyles.helpBox, GUILayout.ExpandHeight(false)))
                 {
                     GUILayout.Label($"Fields: ", EditorStyles.centeredGreyMiniLabel);
                     for (int i = 0; i < m_fields.Length; i++)
@@ -196,7 +202,10 @@ namespace ToorahEditor.MirrorUI
                         m_useField[i] = use;
                     }
                 }
-                using (new GUILayout.VerticalScope())
+
+                
+
+                using (new GUILayout.VerticalScope(EditorStyles.helpBox, GUILayout.ExpandHeight(false)))
                 {
                     GUILayout.Label($"Properties: ", EditorStyles.centeredGreyMiniLabel);
                     for(int i = 0; i < m_properties.Length; i++)
@@ -243,7 +252,8 @@ namespace ToorahEditor.MirrorUI
                 WritePropertyVariables();
 
                 sb.EmptyLine();
-                sb.Tab().DefineMethod($"Link", m_selectedType);
+
+                WriteMethodHeader();
 
                 WriteFieldLogic();
                 WritePropertyLogic();
@@ -267,13 +277,25 @@ namespace ToorahEditor.MirrorUI
                     sb.AddUsingStatements(m_selectedType.Namespace);
             }
 
+            void WriteMethodHeader()
+            {
+                var colSummary = $"<color=#{HEX_Summary}>";
+                var colVar = $"<color=#{HEX_Variable}>";
+                var end = "</color>";
+                sb.Tab().AppendLine($"{colSummary}/// <summary>");
+                sb.Tab().AppendLine($"/// Link the UI to <paramref {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}/>");
+                sb.Tab().AppendLine("/// </summary>");
+                sb.Tab().AppendLine($"/// <param {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}>Instance to link the UI to</param>{end}");
+                sb.Tab().DefineMethod("Link", m_selectedType);
+            }
+
             void WriteFieldVariables()
             {
                 if (m_useField.Count(x => x == true) > 0)
                 {
-                    sb.AppendLine("#region Field UI");
+                    sb.Tab().AppendLine("#region Field UI");
                     DefineVariables(sb, m_fields, m_useField, 1);
-                    sb.AppendLine("#endregion");
+                    sb.Tab().AppendLine("#endregion");
                 }
             }
             void WritePropertyVariables()
@@ -283,9 +305,9 @@ namespace ToorahEditor.MirrorUI
                     if (m_useField.Count(x => x == true) > 0)
                         sb.EmptyLine();
 
-                    sb.AppendLine("#region Property UI");
+                    sb.Tab().AppendLine("#region Property UI");
                     DefineVariables(sb, m_properties, m_useProperty, 1);
-                    sb.AppendLine("#endregion");
+                    sb.Tab().AppendLine("#endregion");
                 }
             }
 
@@ -293,9 +315,9 @@ namespace ToorahEditor.MirrorUI
             {
                 if (m_useField.Count(x => x == true) > 0)
                 {
-                    sb.AppendLine("#region Field Logic");
+                    sb.Tab(2).AppendLine("#region Field Logic");
                     DefineUsage(sb, m_fields, m_useField, 2);
-                    sb.AppendLine("#endregion");
+                    sb.Tab(2).AppendLine("#endregion");
                 }
             }
             void WritePropertyLogic()
@@ -305,21 +327,64 @@ namespace ToorahEditor.MirrorUI
                     if (m_useField.Count(x => x == true) > 0)
                         sb.EmptyLine();
 
-                    sb.AppendLine("#region Property Logic");
+                    sb.Tab(2).AppendLine("#region Property Logic");
                     DefineUsage(sb, m_properties, m_useProperty, 2);
-                    sb.AppendLine("#endregion");
+                    sb.Tab(2).AppendLine("#endregion");
                 }
             }
 
             void RenderPreview()
             {
                 m_generatedClass = sb.ToString();
+                var preview = ColorPreview(m_generatedClass);
+
+                string[] lines = preview.Split('\n');
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    var ind = i + 1;
+                    lines[i] = $"{ind}.";
+                }
+                string lineText = string.Join("\n", lines).Color(HEX_Region);
 
                 using (var scope = new GUILayout.ScrollViewScope(m_textScroll))
                 {
                     m_textScroll = scope.scrollPosition;
-                    GUILayout.Label(m_generatedClass, EditorStyles.helpBox);
+                    using (new GUILayout.HorizontalScope())
+                    {
+                        
+                            GUILayout.Label(lineText, m_labelRight, GUILayout.ExpandWidth(false));
+                        
+                        GUILayout.Label(preview, m_label, GUILayout.ExpandWidth(true));
+                    }
                 }
+            }
+
+            string ColorPreview(string text)
+            {
+                string[] blue = new string[] 
+                {
+                    "using", "public", "private", "class", "void", "int", "string", "float", "bool", "uint", "short", "ushort", "long", "ulong", "decimal", "double", "null"
+                };
+
+                text = text.Replace("/*", $"<color=#{HEX_Comment}>/*").Replace("*/", "*/</color>");
+                text = text.Colorize("IUiLinkable", HEX_Interface);
+                text = text.Colorize("MonoBehaviour", HEX_Class);
+                text = text.Colorize(m_selectedType.Name, HEX_Class);
+                text = text.ColorizeRegion(HEX_Region);
+                text = text.Colorize("=>", HEX_Lambda);
+                foreach(var b in blue)
+                {
+                    text = text.Colorize(b, HEX_Keyword);
+                }
+
+                string[] lines = text.Split('\n');
+                for(int i = 0; i < lines.Length; i++)
+                {
+                    lines[i] = lines[i].ColorizeComment(HEX_Comment);
+                }
+                text = string.Join("\n", lines);
+
+                return text;
             }
         }
 
@@ -407,7 +472,7 @@ namespace ToorahEditor.MirrorUI
 
             await Task.Run(() => 
             {
-                var types = m_allTypes.Where(x => x.Name.ToLowerInvariant().Contains(m_searchText.ToLowerInvariant())).Take(25).ToArray();
+                var types = m_allTypes.Where(x => FormatText(x.Name).Contains(FormatText(m_searchText))).Take(25).ToArray();
                 m_searchTypes.Clear();
                 foreach (var t in types)
                     m_searchTypes.Add(t);
@@ -415,36 +480,112 @@ namespace ToorahEditor.MirrorUI
 
             m_lastSearch = searchText;
             Repaint();
+
+
+            string FormatText(string text)
+            {
+                return text.Replace(" ", "").ToLowerInvariant();
+            }
         }
         void Results()
         {
-            using (new GUILayout.AreaScope(new Rect(0, EditorGUIUtility.singleLineHeight, position.width, 200), GUIContent.none, "window"))
+            foreach (var t in m_searchTypes)
             {
-                using(var scope = new GUILayout.ScrollViewScope(m_searchScroll, GUILayout.ExpandWidth(true)))
+                if (GUILayout.Button(t.GetScriptType(), m_btn))
                 {
-                    m_searchScroll = scope.scrollPosition;
+                    EditorGUI.FocusTextInControl(null);
+                    m_selectedType = t;
+                    m_selectedTypeString = m_selectedType.FullName;
+                    m_searchText = "";
 
-                    foreach(var t in m_searchTypes)
-                    {
-                        if (GUILayout.Button(t.GetScriptType(), m_btn))
-                        {
-                            EditorGUI.FocusTextInControl(null);
-                            m_selectedType = t;
-                            m_searchText = "";
-
-                            GetTypeData();
-                        }
-                    }
+                    GetTypeData();
                 }
             }
         }
 
+
+        public class MirrorData
+        {
+            public string Name { get; set; }
+            public string Namespace { get; set; }
+            public Type Type { get; set; }
+
+            public PropertyInfo property;
+            public FieldInfo field;
+            public bool isField;
+
+            public readonly bool CanRead;
+            public readonly bool CanWrite;
+
+            public MirrorData(PropertyInfo pi)
+            {
+                Name = pi.Name;
+                Namespace = pi.PropertyType.Namespace;
+                Type = pi.PropertyType;
+
+                property = pi;
+                isField = false;
+
+                CanRead = pi.CanRead;
+                CanWrite = pi.CanWrite;
+            }
+            public MirrorData(FieldInfo fi)
+            {
+                Name = fi.Name;
+                Namespace = fi.FieldType.Namespace;
+                Type = fi.FieldType;
+
+                field = fi;
+                isField = true;
+
+                CanRead = fi.IsPublic;
+                CanWrite = fi.IsPublic && !fi.IsInitOnly;
+            }
+        }
     }
 
 
     public static class StringEx
     {
         static readonly string TabsAsSpaces = "    ";
+
+        public static string Color(this string s, Color color)
+        {
+            return s.Color(ColorUtility.ToHtmlStringRGB(color));
+        }
+        public static string Color(this string s, string hex)
+        {
+            return $"<color=#{hex}>{s}</color>";
+        }
+        public static string Colorize(this string s, string target, Color color)
+        {
+            return s.Replace(target, target.Color(color));
+        }
+        public static string Colorize(this string s, string target, string hex)
+        {
+            return s.Replace(target, target.Color(hex));
+        }
+        public static string ColorizeRegion(this string s, Color color)
+        {
+            return s.ColorizeRegion(ColorUtility.ToHtmlStringRGB(color));
+        }
+        public static string ColorizeRegion(this string s, string hex)
+        {
+            return s.Colorize("#region", hex).Colorize("#endregion", hex);
+        }
+        public static string ColorizeComment(this string s, Color color)
+        {
+            return s.ColorizeComment(ColorUtility.ToHtmlStringRGB(color));
+        }
+        public static string ColorizeComment(this string s, string hex)
+        {
+            if (s.Trim().StartsWith("//") && !s.Trim().StartsWith("///"))
+                return s.Color(hex);
+            else
+                return s;
+        }
+
+
 
         public static StringBuilder GenerateNotice(this StringBuilder sb, params string[] lines)
         {
@@ -501,11 +642,11 @@ namespace ToorahEditor.MirrorUI
         {
             if (isMono)
             {
-                sb.AppendLine($"public class {className} : {nameof(MonoBehaviour)}, IUiLinkable<{typeName}> {{");
+                sb.AppendLine($"public class {className.Color(HEX_Class)} : {nameof(MonoBehaviour)}, IUiLinkable<{typeName}> {{");
             }
             else
             {
-                sb.AppendLine($"public class {className} : IUiLinkable<{typeName}> {{");
+                sb.AppendLine($"public class {className.Color(HEX_Class)} : IUiLinkable<{typeName}> {{");
             }
 
             return sb;
@@ -514,84 +655,65 @@ namespace ToorahEditor.MirrorUI
         
         public static StringBuilder CreateTypeTooltip(this StringBuilder sb, Type type)
         {
-            return sb.AppendLine($"[Tooltip(\"{type.GetScriptType().FormatType()}\")]");
+            return sb.AppendLine($"[{("Tooltip".Color(HEX_Class))}({"\"{type.GetScriptType().FormatType()}\"".Color(HEX_String)})]");
         }
         public static StringBuilder DefineDropdown(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(TMP_Dropdown)} dropdown_{name};");
+            return sb.AppendLine($"public {nameof(TMP_Dropdown).Color(HEX_Class)} dropdown_{name};");
         }
         public static StringBuilder DefineSlider(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(Slider)} slider_{name};");
+            return sb.AppendLine($"public {nameof(Slider).Color(HEX_Class)} slider_{name};");
         }
         public static StringBuilder DefineToggle(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(Toggle)} toggle_{name};");
+            return sb.AppendLine($"public {nameof(Toggle).Color(HEX_Class)} toggle_{name};");
         }
         public static StringBuilder DefineInput(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(TMP_InputField)} input_{name};");
+            return sb.AppendLine($"public {nameof(TMP_InputField).Color(HEX_Class)} input_{name};");
         }
+        
         public static StringBuilder DefineMethod(this StringBuilder sb, string methodName, Type type)
         {
-            sb.AppendLine($"public void {methodName}({type.GetScriptType()} instance) {{");
+            sb.AppendLine($"public void {methodName.Color(HEX_Method)}({type.GetScriptType().Color(HEX_Class)} {("instance".Color(HEX_Variable))}) {{");
             return sb;
         }
 
         public static StringBuilder LinkDropdown(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var dropdownName = $"dropdown_{prop.Name}";
-            var instanceName = $"instance.{prop.Name}";
-            sb.Tab(tab).AppendLine($"{nameof(UILinker)}.{nameof(LinkDropdown)}({dropdownName}, {instanceName}, r => {instanceName} = r);");
+            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
+
+            sb.Tab(tab).AppendLine($"{dropdownName}.{nameof(UILinker.LinkDropdown).Color(HEX_Method)}({instanceName}, {("v").Color(HEX_Variable)} => {instanceName} = {("v").Color(HEX_Variable)});");
 
             return sb;
         }
-
         public static StringBuilder LinkSlider(this StringBuilder sb, MirrorData prop, float? min = null, float? max = null, int tab = 0)
         {
             var sliderName = $"slider_{prop.Name}";
-            var instanceName = $"instance.{prop.Name}";
-            //var cast = "";
+            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
 
-            string minText = min.HasValue ? min.Value.ToString(CultureInfo.InvariantCulture) : "null";
-            string maxText = max.HasValue ? max.Value.ToString(CultureInfo.InvariantCulture) : "null";
+            string minText = min.HasValue ? min.Value.ToString(CultureInfo.InvariantCulture).Color(HEX_StructEtc) : "null";
+            string maxText = max.HasValue ? max.Value.ToString(CultureInfo.InvariantCulture).Color(HEX_StructEtc) : "null";
 
-            sb.Tab(tab).AppendLine($"{nameof(UILinker)}.{nameof(UILinker.LinkSlider)}({sliderName}, {instanceName}, {minText}, {maxText}, v => {instanceName} = v);");
-
-            //sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.value)} = (float){instanceName};");
-            //if(options.HasValue)
-            //{
-            //    if(options.Value.min.HasValue)
-            //        sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.minValue)} = {options.Value.min.Value};");
-            //    if(options.Value.max.HasValue)
-            //        sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.maxValue)} = {options.Value.max.Value};");
-
-
-            //    cast = $"({options.Value.sliderType.GetScriptType().FormatType()})";
-            //    if (options.Value.sliderType.IsInteger())
-            //    {
-            //        sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.wholeNumbers)} = true;");
-            //    }
-            //}
-            //sb.Tab(tab).AppendLine($"{sliderName}.{nameof(Slider.onValueChanged)}.{nameof(Slider.SliderEvent.AddListener)}(v => {instanceName} = {cast}v);");
-
+            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(UILinker.LinkSlider).Color(HEX_Method)}({instanceName}, {minText}, {maxText}, {("v").Color(HEX_Variable)} => {instanceName} = {("v").Color(HEX_Variable)});");
             return sb;
         }
-
-
         public static StringBuilder LinkInputField(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var inputName = $"input_{prop.Name}";
-            var instanceName = $"instance.{prop.Name}";
-            sb.Tab(tab).AppendLine($"{inputName}.{nameof(UILinker.LinkInput)}({instanceName}, s => {instanceName} = s);");
+            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
+
+            sb.Tab(tab).AppendLine($"{inputName}.{nameof(UILinker.LinkInput).Color(HEX_Method)}({instanceName}, {("s").Color(HEX_Variable)} => {instanceName} = {("s").Color(HEX_Variable)});");
 
             return sb;
         }
         public static StringBuilder LinkToggle(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var toggleName = $"toggle_{prop.Name}";
-            var instanceName = $"instance.{prop.Name}";
-            sb.Tab(tab).AppendLine($"{toggleName}.{nameof(UILinker.LinkToggle)}({instanceName}, b => {instanceName} = b);");
+            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
+            sb.Tab(tab).AppendLine($"{toggleName}.{nameof(UILinker.LinkToggle).Color(HEX_Method)}({instanceName}, {("b").Color(HEX_Variable)} => {instanceName} = {("b").Color(HEX_Variable)});");
 
             return sb;
         }
