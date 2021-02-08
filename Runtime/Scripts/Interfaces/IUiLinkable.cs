@@ -10,6 +10,6 @@ namespace Toorah.MirrorUI
         /// Link the UI with the properties from <paramref name="instance"/>
         /// </summary>
         /// <param name="instance">Class/Object instance reference</param>
-        public void Link(T instance);
+        void Link(T instance);
     }
 }
