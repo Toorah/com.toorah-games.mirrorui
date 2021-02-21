@@ -14,6 +14,7 @@ using static ToorahEditor.MirrorUI.UIBuilderWindow;
 using TMPro;
 using Toorah.MirrorUI;
 using System.Globalization;
+using ToorahEditor.ScriptCreator.Utils;
 
 namespace ToorahEditor.MirrorUI
 {
@@ -26,19 +27,6 @@ namespace ToorahEditor.MirrorUI
             window.titleContent = new GUIContent("UI Builder", Resources.Load<Texture>("mirror"), "Mirror UI Builder Window");
             window.Show();
         }
-
-        public const string HEX_Comment     = "559a40";
-        public const string HEX_Keyword     = "569cd6";
-        public const string HEX_Variable    = "9cdcfe";
-        public const string HEX_Class       = "4ec9b0";
-        public const string HEX_Interface   = "b8d7a3";
-        public const string HEX_Summary     = "608b4c";
-        public const string HEX_Method      = "d4dcaa";
-        public const string HEX_String      = "d19d85";
-        public const string HEX_Region      = "7c8b95";
-        public const string HEX_Lambda      = "b4b4b4";
-        public const string HEX_StructEtc   = "b5cea8";
-
         
 
         Type[] m_allTypes;
@@ -197,7 +185,7 @@ namespace ToorahEditor.MirrorUI
 
                         if (prop.CanRead && prop.CanWrite)
                         {
-                            use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.Type.FormatType()}>", use);
+                            use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.Type.FormatScriptType()}>", use);
                         }
                         m_useField[i] = use;
                     }
@@ -215,7 +203,7 @@ namespace ToorahEditor.MirrorUI
 
                         if(prop.CanRead && prop.CanWrite)
                         {
-                            use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.Type.FormatType()}>", use);
+                            use = EditorGUILayout.ToggleLeft($"{prop.Name} <{prop.Type.FormatScriptType()}>", use);
                         }
                         m_useProperty[i] = use;
                     }
@@ -242,11 +230,13 @@ namespace ToorahEditor.MirrorUI
 
             void WriteScript()
             {
-                sb.GenerateNotice();
+                sb.AppendGenerationNotice(
+                    $"This Script was automatically generated with {nameof(UIBuilderWindow)}",
+                    "ONLY MODIFY IF YOU KNOW WHAT YOU ARE DOING, CHANGES MAY BE LOST!");
                 WriteUsingStatements();
 
                 sb.EmptyLine();
-                sb.DefineClass(m_className, m_isMono, m_selectedType.GetScriptType().FormatType());
+                sb.DefineClass(m_className, m_isMono, m_selectedType.GetFullScriptTypeName().FormatScriptType());
 
                 WriteFieldVariables();
                 WritePropertyVariables();
@@ -279,8 +269,8 @@ namespace ToorahEditor.MirrorUI
 
             void WriteMethodHeader()
             {
-                var colSummary = $"<color=#{HEX_Summary}>";
-                var colVar = $"<color=#{HEX_Variable}>";
+                var colSummary = $"<color=#{Colors.HEX_Summary}>";
+                var colVar = $"<color=#{Colors.HEX_Variable}>";
                 var end = "</color>";
                 sb.Tab().AppendLine($"{colSummary}/// <summary>");
                 sb.Tab().AppendLine($"/// Link the UI to <paramref {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}/>");
@@ -344,7 +334,7 @@ namespace ToorahEditor.MirrorUI
                     var ind = i + 1;
                     lines[i] = $"{ind}.";
                 }
-                string lineText = string.Join("\n", lines).Color(HEX_Region);
+                string lineText = string.Join("\n", lines).Color(Colors.HEX_Region);
 
                 using (var scope = new GUILayout.ScrollViewScope(m_textScroll))
                 {
@@ -366,21 +356,21 @@ namespace ToorahEditor.MirrorUI
                     "using", "public", "private", "class", "void", "int", "string", "float", "bool", "uint", "short", "ushort", "long", "ulong", "decimal", "double", "null"
                 };
 
-                text = text.Replace("/*", $"<color=#{HEX_Comment}>/*").Replace("*/", "*/</color>");
-                text = text.Colorize("IUiLinkable", HEX_Interface);
-                text = text.Colorize("MonoBehaviour", HEX_Class);
-                text = text.Colorize(m_selectedType.Name, HEX_Class);
-                text = text.ColorizeRegion(HEX_Region);
-                text = text.Colorize("=>", HEX_Lambda);
+                text = text.Replace("/*", $"<color=#{Colors.HEX_Comment}>/*").Replace("*/", "*/</color>");
+                text = text.Colorize("IUiLinkable", Colors.HEX_Interface);
+                text = text.Colorize("MonoBehaviour", Colors.HEX_Class);
+                text = text.Colorize(m_selectedType.Name, Colors.HEX_Class);
+                text = text.ColorizeRegion(Colors.HEX_Region);
+                text = text.Colorize("=>", Colors.HEX_Lambda);
                 foreach(var b in blue)
                 {
-                    text = text.Colorize(b, HEX_Keyword);
+                    text = text.Colorize(b, Colors.HEX_Keyword);
                 }
 
                 string[] lines = text.Split('\n');
                 for(int i = 0; i < lines.Length; i++)
                 {
-                    lines[i] = lines[i].ColorizeComment(HEX_Comment);
+                    lines[i] = lines[i].ColorizeComment(Colors.HEX_Comment);
                 }
                 text = string.Join("\n", lines);
 
@@ -491,7 +481,7 @@ namespace ToorahEditor.MirrorUI
         {
             foreach (var t in m_searchTypes)
             {
-                if (GUILayout.Button(t.GetScriptType(), m_btn))
+                if (GUILayout.Button(t.GetFullScriptTypeName(), m_btn))
                 {
                     EditorGUI.FocusTextInControl(null);
                     m_selectedType = t;
@@ -547,7 +537,6 @@ namespace ToorahEditor.MirrorUI
 
     public static class StringEx
     {
-        static readonly string TabsAsSpaces = "    ";
 
         public static string Color(this string s, Color color)
         {
@@ -587,49 +576,6 @@ namespace ToorahEditor.MirrorUI
 
 
 
-        public static StringBuilder GenerateNotice(this StringBuilder sb, params string[] lines)
-        {
-            sb.AppendLine("/*#############################################")
-                .Append("#").Tab().AppendLine($"This Script was automatically generated from {nameof(UIBuilderWindow)}")
-                .Append("#").Tab().AppendLine("DO NOT MODIFY, CHANGES MAY BE LOST!");
-
-            foreach(var line in lines)
-            {
-                sb.Append("#").Tab().AppendLine(line);
-            }
-
-            sb.AppendLine("#############################################*/");
-            sb.EmptyLine();
-            return sb;
-        }
-
-        public static StringBuilder Tab(this StringBuilder sb)
-        {
-            return sb.Append(TabsAsSpaces);
-        }
-
-        public static StringBuilder Tab(this StringBuilder sb, int tabs)
-        {
-            for (int i = 0; i < tabs; i++)
-                sb.Tab();
-
-            return sb;
-        }
-
-        public static string SpacesToTabs(this string text)
-        {
-            return text.Replace(TabsAsSpaces, "\t");
-        }
-
-        public static StringBuilder TabLine(this StringBuilder sb)
-        {
-            return sb.AppendLine("   ");
-        }
-        public static StringBuilder EmptyLine(this StringBuilder sb)
-        {
-            return sb.AppendLine("");
-        }
-
         public static StringBuilder AddUsingStatements(this StringBuilder sb, params string[] statements)
         {
             foreach (var s in statements)
@@ -642,11 +588,11 @@ namespace ToorahEditor.MirrorUI
         {
             if (isMono)
             {
-                sb.AppendLine($"public class {className.Color(HEX_Class)} : {nameof(MonoBehaviour)}, IUiLinkable<{typeName}> {{");
+                sb.AppendLine($"public class {className.Color(Colors.HEX_Class)} : {nameof(MonoBehaviour)}, IUiLinkable<{typeName}> {{");
             }
             else
             {
-                sb.AppendLine($"public class {className.Color(HEX_Class)} : IUiLinkable<{typeName}> {{");
+                sb.AppendLine($"public class {className.Color(Colors.HEX_Class)} : IUiLinkable<{typeName}> {{");
             }
 
             return sb;
@@ -655,121 +601,67 @@ namespace ToorahEditor.MirrorUI
         
         public static StringBuilder CreateTypeTooltip(this StringBuilder sb, Type type)
         {
-            return sb.AppendLine($"[{("Tooltip".Color(HEX_Class))}({"\"{type.GetScriptType().FormatType()}\"".Color(HEX_String)})]");
+            return sb.AppendLine($"[{("Tooltip".Color(Colors.HEX_Class))}({"\"{type.GetScriptType().FormatType()}\"".Color(Colors.HEX_String)})]");
         }
         public static StringBuilder DefineDropdown(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(TMP_Dropdown).Color(HEX_Class)} dropdown_{name};");
+            return sb.AppendLine($"public {nameof(TMP_Dropdown).Color(Colors.HEX_Class)} dropdown_{name};");
         }
         public static StringBuilder DefineSlider(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(Slider).Color(HEX_Class)} slider_{name};");
+            return sb.AppendLine($"public {nameof(Slider).Color(Colors.HEX_Class)} slider_{name};");
         }
         public static StringBuilder DefineToggle(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(Toggle).Color(HEX_Class)} toggle_{name};");
+            return sb.AppendLine($"public {nameof(Toggle).Color(Colors.HEX_Class)} toggle_{name};");
         }
         public static StringBuilder DefineInput(this StringBuilder sb, string name)
         {
-            return sb.AppendLine($"public {nameof(TMP_InputField).Color(HEX_Class)} input_{name};");
+            return sb.AppendLine($"public {nameof(TMP_InputField).Color(Colors.HEX_Class)} input_{name};");
         }
         
         public static StringBuilder DefineMethod(this StringBuilder sb, string methodName, Type type)
         {
-            sb.AppendLine($"public void {methodName.Color(HEX_Method)}({type.GetScriptType().Color(HEX_Class)} {("instance".Color(HEX_Variable))}) {{");
+            sb.AppendLine($"public void {methodName.Color(Colors.HEX_Method)}({type.GetFullScriptTypeName().Color(Colors.HEX_Class)} {("instance".Color(Colors.HEX_Variable))}) {{");
             return sb;
         }
 
         public static StringBuilder LinkDropdown(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var dropdownName = $"dropdown_{prop.Name}";
-            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
+            var instanceName = "instance".Color(Colors.HEX_Variable) + $".{prop.Name}";
 
-            sb.Tab(tab).AppendLine($"{dropdownName}.{nameof(UILinker.LinkDropdown).Color(HEX_Method)}({instanceName}, {("v").Color(HEX_Variable)} => {instanceName} = {("v").Color(HEX_Variable)});");
+            sb.Tab(tab).AppendLine($"{dropdownName}.{nameof(UILinker.LinkDropdown).Color(Colors.HEX_Method)}({instanceName}, {("v").Color(Colors.HEX_Variable)} => {instanceName} = {("v").Color(Colors.HEX_Variable)});");
 
             return sb;
         }
         public static StringBuilder LinkSlider(this StringBuilder sb, MirrorData prop, float? min = null, float? max = null, int tab = 0)
         {
             var sliderName = $"slider_{prop.Name}";
-            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
+            var instanceName = "instance".Color(Colors.HEX_Variable) + $".{prop.Name}";
 
-            string minText = min.HasValue ? min.Value.ToString(CultureInfo.InvariantCulture).Color(HEX_StructEtc) : "null";
-            string maxText = max.HasValue ? max.Value.ToString(CultureInfo.InvariantCulture).Color(HEX_StructEtc) : "null";
+            string minText = min.HasValue ? min.Value.ToString(CultureInfo.InvariantCulture).Color(Colors.HEX_StructEtc) : "null";
+            string maxText = max.HasValue ? max.Value.ToString(CultureInfo.InvariantCulture).Color(Colors.HEX_StructEtc) : "null";
 
-            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(UILinker.LinkSlider).Color(HEX_Method)}({instanceName}, {minText}, {maxText}, {("v").Color(HEX_Variable)} => {instanceName} = {("v").Color(HEX_Variable)});");
+            sb.Tab(tab).AppendLine($"{sliderName}.{nameof(UILinker.LinkSlider).Color(Colors.HEX_Method)}({instanceName}, {minText}, {maxText}, {("v").Color(Colors.HEX_Variable)} => {instanceName} = {("v").Color(Colors.HEX_Variable)});");
             return sb;
         }
         public static StringBuilder LinkInputField(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var inputName = $"input_{prop.Name}";
-            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
+            var instanceName = "instance".Color(Colors.HEX_Variable) + $".{prop.Name}";
 
-            sb.Tab(tab).AppendLine($"{inputName}.{nameof(UILinker.LinkInput).Color(HEX_Method)}({instanceName}, {("s").Color(HEX_Variable)} => {instanceName} = {("s").Color(HEX_Variable)});");
+            sb.Tab(tab).AppendLine($"{inputName}.{nameof(UILinker.LinkInput).Color(Colors.HEX_Method)}({instanceName}, {("s").Color(Colors.HEX_Variable)} => {instanceName} = {("s").Color(Colors.HEX_Variable)});");
 
             return sb;
         }
         public static StringBuilder LinkToggle(this StringBuilder sb, MirrorData prop, int tab = 0)
         {
             var toggleName = $"toggle_{prop.Name}";
-            var instanceName = "instance".Color(HEX_Variable) + $".{prop.Name}";
-            sb.Tab(tab).AppendLine($"{toggleName}.{nameof(UILinker.LinkToggle).Color(HEX_Method)}({instanceName}, {("b").Color(HEX_Variable)} => {instanceName} = {("b").Color(HEX_Variable)});");
+            var instanceName = "instance".Color(Colors.HEX_Variable) + $".{prop.Name}";
+            sb.Tab(tab).AppendLine($"{toggleName}.{nameof(UILinker.LinkToggle).Color(Colors.HEX_Method)}({instanceName}, {("b").Color(Colors.HEX_Variable)} => {instanceName} = {("b").Color(Colors.HEX_Variable)});");
 
             return sb;
-        }
-
-        
-
-        public static string FormatType(this Type type)
-        {
-            return type.Name.FormatType();
-        }
-        public static string FormatType(this string typeString)
-        {
-            var p = typeString;
-
-            switch (typeString)
-            {
-                case "Single":
-                    p = "float";
-                    break;
-                case "Boolean":
-                    p = "bool";
-                    break;
-                case "String":
-                    p = "string";
-                    break;
-                case "Double":
-                    p = "double";
-                    break;
-                case "Int32":
-                    p = "int";
-                    break;
-                case "UInt32":
-                    p = "uint";
-                    break;
-                case "Int64":
-                    p = "long";
-                    break;
-                case "UInt64":
-                    p = "ulong";
-                    break;
-                case "Int16":
-                    p = "short";
-                    break;
-                case "UInt16":
-                    p = "ushort";
-                    break;
-                case "Null":
-                    p = "null";
-                    break;
-            }
-
-            return p;
-        }
-        public static string GetScriptType(this Type type)
-        {
-            return type.FullName.Replace($"{type.Namespace}.", "").Replace("+", ".").Replace(" ", "");
         }
     }
 }

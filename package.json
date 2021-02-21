@@ -5,7 +5,8 @@
     "description": "Reflection Based Runtime UI Builder",
     "unity": "2020.1",
     "dependencies": {
-        "com.unity.textmeshpro": "3.0.3"
+        "com.unity.textmeshpro": "3.0.3",
+        "com.toorah-games.scriptcreator": "1.0.0"
     },
     "author": {
         "name": "Atahan Tugra Kiltan",

@@ -3,7 +3,9 @@
     "rootNamespace": "ToorahEditor.MirrorUI",
     "references": [
         "GUID:e4ad2d54821397546b5d6552fe225bb8",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:57baa842452a68c45888d801499734cf",
+        "GUID:f3c8745432e14a24981ac7b934da01d3"
     ],
     "includePlatforms": [
         "Editor"
