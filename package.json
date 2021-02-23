@@ -1,6 +1,6 @@
 {
     "name": "com.toorah-games.mirrorui",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "Mirror UI",
     "description": "Reflection Based Runtime UI Builder",
     "unity": "2020.1",
