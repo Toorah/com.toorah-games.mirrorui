@@ -15,6 +15,7 @@ using TMPro;
 using Toorah.MirrorUI;
 using System.Globalization;
 using ToorahEditor.ScriptCreator.Utils;
+using ToorahEditor.ScriptCreator;
 
 namespace ToorahEditor.MirrorUI
 {
@@ -58,7 +59,7 @@ namespace ToorahEditor.MirrorUI
             m_allTypes = AppDomain.CurrentDomain.GetAssemblies()
                        .SelectMany(assembly => assembly.GetTypes()).ToArray();
 
-            if (!string.IsNullOrEmpty(m_selectedTypeString))
+            if (!string.IsNullOrEmpty(m_selectedTypeString) && m_allTypes.Length > 0)
             {
                 m_selectedType = m_allTypes.First(x => x.FullName == m_selectedTypeString);
                 if(m_selectedType != null)
@@ -221,113 +222,34 @@ namespace ToorahEditor.MirrorUI
                 }
             }
 
-            StringBuilder sb = new StringBuilder();
-
-            WriteScript();
-
-            RenderPreview();
-
-
-            void WriteScript()
-            {
-                sb.AppendGenerationNotice(
+            var script = FluentScript.Create(m_className);
+            var type =  script.AddScriptHeader(
                     $"This Script was automatically generated with {nameof(UIBuilderWindow)}",
                     "ONLY MODIFY IF YOU KNOW WHAT YOU ARE DOING, CHANGES MAY BE LOST!");
-                WriteUsingStatements();
+            if (m_isMono)
+                type.SetParentClass<MonoBehaviour>();
 
-                sb.EmptyLine();
-                sb.DefineClass(m_className, m_isMono, m_selectedType.GetFullScriptTypeName().FormatScriptType());
+            var interfaceType = typeof(IUiLinkable<>);
+            interfaceType = interfaceType.MakeGenericType(m_selectedType);
 
-                WriteFieldVariables();
-                WritePropertyVariables();
-
-                sb.EmptyLine();
-
-                WriteMethodHeader();
-
-                WriteFieldLogic();
-                WritePropertyLogic();
-
-                sb.Tab().AppendLine("}");
-
-
-
-                sb.AppendLine("}");
-            }
-
-            void WriteUsingStatements()
+            type.AddInterface(interfaceType);
+            var body = (IScriptBody)type;
+            if (m_useField.Count(x => x == true) > 0)
             {
-                sb.AddUsingStatements("System",
-                                    "System.Collections.Generic",
-                                    "UnityEngine",
-                                    "UnityEngine.UI",
-                                    "TMPro",
-                                    "Toorah.MirrorUI");
-                if (!string.IsNullOrEmpty(m_selectedType.Namespace))
-                    sb.AddUsingStatements(m_selectedType.Namespace);
+                body.AddRegion("Fields");
+                DefineVariables(body, m_fields, m_useField);
             }
-
-            void WriteMethodHeader()
+            if (m_useProperty.Count(x => x == true) > 0)
             {
-                var colSummary = $"<color=#{Colors.HEX_Summary}>";
-                var colVar = $"<color=#{Colors.HEX_Variable}>";
-                var end = "</color>";
-                sb.Tab().AppendLine($"{colSummary}/// <summary>");
-                sb.Tab().AppendLine($"/// Link the UI to <paramref {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}/>");
-                sb.Tab().AppendLine("/// </summary>");
-                sb.Tab().AppendLine($"/// <param {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}>Instance to link the UI to</param>{end}");
-                sb.Tab().DefineMethod("Link", m_selectedType);
+                body.AddRegion("Properties");
+                DefineVariables(body, m_properties, m_useProperty);
             }
-
-            void WriteFieldVariables()
-            {
-                if (m_useField.Count(x => x == true) > 0)
-                {
-                    sb.Tab().AppendLine("#region Field UI");
-                    DefineVariables(sb, m_fields, m_useField, 1);
-                    sb.Tab().AppendLine("#endregion");
-                }
-            }
-            void WritePropertyVariables()
-            {
-                if (m_useProperty.Count(x => x == true) > 0)
-                {
-                    if (m_useField.Count(x => x == true) > 0)
-                        sb.EmptyLine();
-
-                    sb.Tab().AppendLine("#region Property UI");
-                    DefineVariables(sb, m_properties, m_useProperty, 1);
-                    sb.Tab().AppendLine("#endregion");
-                }
-            }
-
-            void WriteFieldLogic()
-            {
-                if (m_useField.Count(x => x == true) > 0)
-                {
-                    sb.Tab(2).AppendLine("#region Field Logic");
-                    DefineUsage(sb, m_fields, m_useField, 2);
-                    sb.Tab(2).AppendLine("#endregion");
-                }
-            }
-            void WritePropertyLogic()
-            {
-                if (m_useProperty.Count(x => x == true) > 0)
-                {
-                    if (m_useField.Count(x => x == true) > 0)
-                        sb.EmptyLine();
-
-                    sb.Tab(2).AppendLine("#region Property Logic");
-                    DefineUsage(sb, m_properties, m_useProperty, 2);
-                    sb.Tab(2).AppendLine("#endregion");
-                }
-            }
+            //var generated = body.Write();
+            var preview = body.Preview();
+            RenderPreview();
 
             void RenderPreview()
             {
-                m_generatedClass = sb.ToString();
-                var preview = ColorPreview(m_generatedClass);
-
                 string[] lines = preview.Split('\n');
                 for (int i = 0; i < lines.Length; i++)
                 {
@@ -341,41 +263,169 @@ namespace ToorahEditor.MirrorUI
                     m_textScroll = scope.scrollPosition;
                     using (new GUILayout.HorizontalScope())
                     {
-                        
-                            GUILayout.Label(lineText, m_labelRight, GUILayout.ExpandWidth(false));
-                        
+
+                        GUILayout.Label(lineText, m_labelRight, GUILayout.ExpandWidth(false));
+
                         GUILayout.Label(preview, m_label, GUILayout.ExpandWidth(true));
                     }
                 }
             }
 
-            string ColorPreview(string text)
-            {
-                string[] blue = new string[] 
-                {
-                    "using", "public", "private", "class", "void", "int", "string", "float", "bool", "uint", "short", "ushort", "long", "ulong", "decimal", "double", "null"
-                };
+            //StringBuilder sb = new StringBuilder();
 
-                text = text.Replace("/*", $"<color=#{Colors.HEX_Comment}>/*").Replace("*/", "*/</color>");
-                text = text.Colorize("IUiLinkable", Colors.HEX_Interface);
-                text = text.Colorize("MonoBehaviour", Colors.HEX_Class);
-                text = text.Colorize(m_selectedType.Name, Colors.HEX_Class);
-                text = text.ColorizeRegion(Colors.HEX_Region);
-                text = text.Colorize("=>", Colors.HEX_Lambda);
-                foreach(var b in blue)
-                {
-                    text = text.Colorize(b, Colors.HEX_Keyword);
-                }
+            //WriteScript();
 
-                string[] lines = text.Split('\n');
-                for(int i = 0; i < lines.Length; i++)
-                {
-                    lines[i] = lines[i].ColorizeComment(Colors.HEX_Comment);
-                }
-                text = string.Join("\n", lines);
+            //RenderPreview();
 
-                return text;
-            }
+
+            //void WriteScript()
+            //{
+            //    sb.AppendGenerationNotice(
+            //        $"This Script was automatically generated with {nameof(UIBuilderWindow)}",
+            //        "ONLY MODIFY IF YOU KNOW WHAT YOU ARE DOING, CHANGES MAY BE LOST!");
+            //    WriteUsingStatements();
+
+            //    sb.EmptyLine();
+            //    sb.DefineClass(m_className, m_isMono, m_selectedType.GetFullScriptTypeName().FormatScriptType());
+
+            //    WriteFieldVariables();
+            //    WritePropertyVariables();
+
+            //    sb.EmptyLine();
+
+            //    WriteMethodHeader();
+
+            //    WriteFieldLogic();
+            //    WritePropertyLogic();
+
+            //    sb.Tab().AppendLine("}");
+
+
+
+            //    sb.AppendLine("}");
+            //}
+
+            //void WriteUsingStatements()
+            //{
+            //    sb.AddUsingStatements("System",
+            //                        "System.Collections.Generic",
+            //                        "UnityEngine",
+            //                        "UnityEngine.UI",
+            //                        "TMPro",
+            //                        "Toorah.MirrorUI");
+            //    if (!string.IsNullOrEmpty(m_selectedType.Namespace))
+            //        sb.AddUsingStatements(m_selectedType.Namespace);
+            //}
+
+            //void WriteMethodHeader()
+            //{
+            //    var colSummary = $"<color=#{Colors.HEX_Summary}>";
+            //    var colVar = $"<color=#{Colors.HEX_Variable}>";
+            //    var end = "</color>";
+            //    sb.Tab().AppendLine($"{colSummary}/// <summary>");
+            //    sb.Tab().AppendLine($"/// Link the UI to <paramref {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}/>");
+            //    sb.Tab().AppendLine("/// </summary>");
+            //    sb.Tab().AppendLine($"/// <param {end}name{colSummary}={end}\"{colVar}instance{end}\"{colSummary}>Instance to link the UI to</param>{end}");
+            //    sb.Tab().DefineMethod("Link", m_selectedType);
+            //}
+
+            //void WriteFieldVariables()
+            //{
+            //    if (m_useField.Count(x => x == true) > 0)
+            //    {
+            //        sb.Tab().AppendLine("#region Field UI");
+            //        DefineVariables(sb, m_fields, m_useField, 1);
+            //        sb.Tab().AppendLine("#endregion");
+            //    }
+            //}
+            //void WritePropertyVariables()
+            //{
+            //    if (m_useProperty.Count(x => x == true) > 0)
+            //    {
+            //        if (m_useField.Count(x => x == true) > 0)
+            //            sb.EmptyLine();
+
+            //        sb.Tab().AppendLine("#region Property UI");
+            //        DefineVariables(sb, m_properties, m_useProperty, 1);
+            //        sb.Tab().AppendLine("#endregion");
+            //    }
+            //}
+
+            //void WriteFieldLogic()
+            //{
+            //    if (m_useField.Count(x => x == true) > 0)
+            //    {
+            //        sb.Tab(2).AppendLine("#region Field Logic");
+            //        DefineUsage(sb, m_fields, m_useField, 2);
+            //        sb.Tab(2).AppendLine("#endregion");
+            //    }
+            //}
+            //void WritePropertyLogic()
+            //{
+            //    if (m_useProperty.Count(x => x == true) > 0)
+            //    {
+            //        if (m_useField.Count(x => x == true) > 0)
+            //            sb.EmptyLine();
+
+            //        sb.Tab(2).AppendLine("#region Property Logic");
+            //        DefineUsage(sb, m_properties, m_useProperty, 2);
+            //        sb.Tab(2).AppendLine("#endregion");
+            //    }
+            //}
+
+            //void RenderPreview()
+            //{
+            //    m_generatedClass = sb.ToString();
+            //    var preview = ColorPreview(m_generatedClass);
+
+            //    string[] lines = preview.Split('\n');
+            //    for (int i = 0; i < lines.Length; i++)
+            //    {
+            //        var ind = i + 1;
+            //        lines[i] = $"{ind}.";
+            //    }
+            //    string lineText = string.Join("\n", lines).Color(Colors.HEX_Region);
+
+            //    using (var scope = new GUILayout.ScrollViewScope(m_textScroll))
+            //    {
+            //        m_textScroll = scope.scrollPosition;
+            //        using (new GUILayout.HorizontalScope())
+            //        {
+
+            //                GUILayout.Label(lineText, m_labelRight, GUILayout.ExpandWidth(false));
+
+            //            GUILayout.Label(preview, m_label, GUILayout.ExpandWidth(true));
+            //        }
+            //    }
+            //}
+
+            //string ColorPreview(string text)
+            //{
+            //    string[] blue = new string[] 
+            //    {
+            //        "using", "public", "private", "class", "void", "int", "string", "float", "bool", "uint", "short", "ushort", "long", "ulong", "decimal", "double", "null"
+            //    };
+
+            //    text = text.Replace("/*", $"<color=#{Colors.HEX_Comment}>/*").Replace("*/", "*/</color>");
+            //    text = text.Colorize("IUiLinkable", Colors.HEX_Interface);
+            //    text = text.Colorize("MonoBehaviour", Colors.HEX_Class);
+            //    text = text.Colorize(m_selectedType.Name, Colors.HEX_Class);
+            //    text = text.ColorizeRegion(Colors.HEX_Region);
+            //    text = text.Colorize("=>", Colors.HEX_Lambda);
+            //    foreach(var b in blue)
+            //    {
+            //        text = text.Colorize(b, Colors.HEX_Keyword);
+            //    }
+
+            //    string[] lines = text.Split('\n');
+            //    for(int i = 0; i < lines.Length; i++)
+            //    {
+            //        lines[i] = lines[i].ColorizeComment(Colors.HEX_Comment);
+            //    }
+            //    text = string.Join("\n", lines);
+
+            //    return text;
+            //}
         }
 
         void DefineVariables(StringBuilder sb, MirrorData[] data, bool[] uses, int tab = 0)
@@ -403,6 +453,36 @@ namespace ToorahEditor.MirrorUI
                     else if (prop.Type.IsBool())
                     {
                         sb.Tab(tab).DefineToggle(prop.Name);
+                    }
+                }
+            }
+        }
+
+        void DefineVariables(IScriptBody script, MirrorData[] data, bool[] uses)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                var prop = data[i];
+                var use = uses[i];
+
+                if (use)
+                {
+                    //sb.Tab().CreateTypeTooltip(prop.PropertyType);
+                    if (prop.Type.IsEnum)
+                    {
+                        script.AddField<TMP_Dropdown>(prop.Name, Accessor.Public);
+                    }
+                    else if (prop.Type.IsNumber())
+                    {
+                        script.AddField<Slider>(prop.Name, Accessor.Public);
+                    }
+                    else if (prop.Type.IsText())
+                    {
+                        script.AddField<TMP_InputField>(prop.Name, Accessor.Public);
+                    }
+                    else if (prop.Type.IsBool())
+                    {
+                        script.AddField<Toggle>(prop.Name, Accessor.Public);
                     }
                 }
             }
