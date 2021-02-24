@@ -16,6 +16,9 @@ namespace ToorahEditor.MirrorUI
         [SerializeField] StyleSheet uss;
 
 
+        /// <summary>
+        /// Open this Window
+        /// </summary>
         [MenuItem("Mirror UI/About", priority = 1000)]
         static void Open()
         {
@@ -24,6 +27,9 @@ namespace ToorahEditor.MirrorUI
             win.ShowUtility();
         }
 
+        /// <summary>
+        /// Called when the Window is opened, or it's open but Unity reloads, eg. recompile
+        /// </summary>
         private void OnEnable()
         {
             minSize = new Vector2(350, 220);
@@ -53,37 +59,26 @@ namespace ToorahEditor.MirrorUI
         }
         
         
+        /// <summary>
+        /// Open the URL to ko-fi
+        /// </summary>
         private void OpenKofi()
         {
             Application.OpenURL("https://ko-fi.com/toorah");
         }
+        /// <summary>
+        /// Open the URL to Twitter
+        /// </summary>
         private void OpenTwitter()
         {
             Application.OpenURL("https://twitter.com/AtahanTKiltan");
         }
-
+        /// <summary>
+        /// Open the URL to Github
+        /// </summary>
         private void OpenGitHub()
         {
             Application.OpenURL("https://github.com/Toorah/com.toorah-games.mirrorui");
         }
-
-        //private void OnGUI()
-        //{
-        //    using (new GUILayout.HorizontalScope()) 
-        //    {
-        //        GUILayout.FlexibleSpace();
-
-        //        GUILayout.Label(s_mirrorTex);
-
-        //        GUILayout.FlexibleSpace();
-        //    }
-
-        //    GUILayout.Label("2021 © Atahan Tuğra Kiltan");
-
-        //    if (GUILayout.Button(new GUIContent("View on GitHub", s_githubTex)))
-        //    {
-        //        Application.OpenURL("https://github.com/Toorah/com.toorah-games.mirrorui");
-        //    }
-        //}
     }
 }
