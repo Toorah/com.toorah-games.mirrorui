@@ -1,0 +1,290 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "4bzwWsvOvZR2kffHGgWRtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.IUiLinkable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.IUiLinkable-1.html",
+          "hash": "OvMDsZe8WZ9oKUYLzIVJTg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.Mirror.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.Mirror.html",
+          "hash": "L8AwQxSAZ03hJy42nH8L6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.Resources.UIResources.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.Resources.UIResources.html",
+          "hash": "OTGoTRvWa6zG/eiBm8frmg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.Resources.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.Resources.html",
+          "hash": "4yYnPV/mC8TuE8blduefgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.UIHintAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.UIHintAttribute.html",
+          "hash": "abCdYuGQ6VCO4rYFwm77Mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.UILinker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.UILinker.html",
+          "hash": "spvUuz6aCQeoJMNo6if8HQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.UIRangeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.UIRangeAttribute.html",
+          "hash": "XO+NdEThUIEDhYUHTSvbKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Toorah.MirrorUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Toorah.MirrorUI.html",
+          "hash": "nrmvuL9U9IUBGjTX4Nef5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahEditor.MirrorUI.AboutWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahEditor.MirrorUI.AboutWindow.html",
+          "hash": "ZB1EZelm1+uWraz9Aue8YQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahEditor.MirrorUI.StringEx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahEditor.MirrorUI.StringEx.html",
+          "hash": "Xo54pHIDrPXnaOQwWE2mhg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html",
+          "hash": "SoPuq0gE/pcaFH3B+BeK7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahEditor.MirrorUI.UIBuilderWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahEditor.MirrorUI.UIBuilderWindow.html",
+          "hash": "RxR18ibjYVEE7WVrCyiB0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahEditor.MirrorUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahEditor.MirrorUI.html",
+          "hash": "V7HQ1qrBJmLDMVzHTMPoUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahUI.Test.TestUIBuilder.TestClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahUI.Test.TestUIBuilder.TestClass.html",
+          "hash": "sW8sl9tn9j7aCkQ3kPZGWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahUI.Test.TestUIBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahUI.Test.TestUIBuilder.html",
+          "hash": "TIQpCUEAT7M15qIM7Y4IBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ToorahUI.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ToorahUI.Test.html",
+          "hash": "h74iGHJuJ+CR+SeMaiLeZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "AIxkWggCbotuVn28LX+QQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "/Cc6EcizPHgWzfQAdssJbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 16,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

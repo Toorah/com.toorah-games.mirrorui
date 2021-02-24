@@ -1,0 +1,945 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Toorah.MirrorUI
+  name: Toorah.MirrorUI
+  href: api/Toorah.MirrorUI.html
+  commentId: N:Toorah.MirrorUI
+  fullName: Toorah.MirrorUI
+  nameWithType: Toorah.MirrorUI
+- uid: Toorah.MirrorUI.IUiLinkable`1
+  name: IUiLinkable<T>
+  href: api/Toorah.MirrorUI.IUiLinkable-1.html
+  commentId: T:Toorah.MirrorUI.IUiLinkable`1
+  name.vb: IUiLinkable(Of T)
+  fullName: Toorah.MirrorUI.IUiLinkable<T>
+  fullName.vb: Toorah.MirrorUI.IUiLinkable(Of T)
+  nameWithType: IUiLinkable<T>
+  nameWithType.vb: IUiLinkable(Of T)
+- uid: Toorah.MirrorUI.IUiLinkable`1.Link(`0)
+  name: Link(T)
+  href: api/Toorah.MirrorUI.IUiLinkable-1.html#Toorah_MirrorUI_IUiLinkable_1_Link__0_
+  commentId: M:Toorah.MirrorUI.IUiLinkable`1.Link(`0)
+  fullName: Toorah.MirrorUI.IUiLinkable<T>.Link(T)
+  fullName.vb: Toorah.MirrorUI.IUiLinkable(Of T).Link(T)
+  nameWithType: IUiLinkable<T>.Link(T)
+  nameWithType.vb: IUiLinkable(Of T).Link(T)
+- uid: Toorah.MirrorUI.IUiLinkable`1.Link*
+  name: Link
+  href: api/Toorah.MirrorUI.IUiLinkable-1.html#Toorah_MirrorUI_IUiLinkable_1_Link_
+  commentId: Overload:Toorah.MirrorUI.IUiLinkable`1.Link
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.IUiLinkable<T>.Link
+  fullName.vb: Toorah.MirrorUI.IUiLinkable(Of T).Link
+  nameWithType: IUiLinkable<T>.Link
+  nameWithType.vb: IUiLinkable(Of T).Link
+- uid: Toorah.MirrorUI.Mirror
+  name: Mirror
+  href: api/Toorah.MirrorUI.Mirror.html
+  commentId: T:Toorah.MirrorUI.Mirror
+  fullName: Toorah.MirrorUI.Mirror
+  nameWithType: Mirror
+- uid: Toorah.MirrorUI.Mirror.GetNames*
+  name: GetNames
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_GetNames_
+  commentId: Overload:Toorah.MirrorUI.Mirror.GetNames
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.GetNames
+  nameWithType: Mirror.GetNames
+- uid: Toorah.MirrorUI.Mirror.GetNames``1
+  name: GetNames<TEnum>()
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_GetNames__1
+  commentId: M:Toorah.MirrorUI.Mirror.GetNames``1
+  name.vb: GetNames(Of TEnum)()
+  fullName: Toorah.MirrorUI.Mirror.GetNames<TEnum>()
+  fullName.vb: Toorah.MirrorUI.Mirror.GetNames(Of TEnum)()
+  nameWithType: Mirror.GetNames<TEnum>()
+  nameWithType.vb: Mirror.GetNames(Of TEnum)()
+- uid: Toorah.MirrorUI.Mirror.GetValues*
+  name: GetValues
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_GetValues_
+  commentId: Overload:Toorah.MirrorUI.Mirror.GetValues
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.GetValues
+  nameWithType: Mirror.GetValues
+- uid: Toorah.MirrorUI.Mirror.GetValues``2
+  name: GetValues<TEnum, T>()
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_GetValues__2
+  commentId: M:Toorah.MirrorUI.Mirror.GetValues``2
+  name.vb: GetValues(Of TEnum, T)()
+  fullName: Toorah.MirrorUI.Mirror.GetValues<TEnum, T>()
+  fullName.vb: Toorah.MirrorUI.Mirror.GetValues(Of TEnum, T)()
+  nameWithType: Mirror.GetValues<TEnum, T>()
+  nameWithType.vb: Mirror.GetValues(Of TEnum, T)()
+- uid: Toorah.MirrorUI.Mirror.IsBool(System.Type)
+  name: IsBool(Type)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsBool_System_Type_
+  commentId: M:Toorah.MirrorUI.Mirror.IsBool(System.Type)
+  fullName: Toorah.MirrorUI.Mirror.IsBool(System.Type)
+  nameWithType: Mirror.IsBool(Type)
+- uid: Toorah.MirrorUI.Mirror.IsBool*
+  name: IsBool
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsBool_
+  commentId: Overload:Toorah.MirrorUI.Mirror.IsBool
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.IsBool
+  nameWithType: Mirror.IsBool
+- uid: Toorah.MirrorUI.Mirror.IsDecimal(System.Type)
+  name: IsDecimal(Type)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsDecimal_System_Type_
+  commentId: M:Toorah.MirrorUI.Mirror.IsDecimal(System.Type)
+  fullName: Toorah.MirrorUI.Mirror.IsDecimal(System.Type)
+  nameWithType: Mirror.IsDecimal(Type)
+- uid: Toorah.MirrorUI.Mirror.IsDecimal*
+  name: IsDecimal
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsDecimal_
+  commentId: Overload:Toorah.MirrorUI.Mirror.IsDecimal
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.IsDecimal
+  nameWithType: Mirror.IsDecimal
+- uid: Toorah.MirrorUI.Mirror.IsInteger(System.Type)
+  name: IsInteger(Type)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsInteger_System_Type_
+  commentId: M:Toorah.MirrorUI.Mirror.IsInteger(System.Type)
+  fullName: Toorah.MirrorUI.Mirror.IsInteger(System.Type)
+  nameWithType: Mirror.IsInteger(Type)
+- uid: Toorah.MirrorUI.Mirror.IsInteger*
+  name: IsInteger
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsInteger_
+  commentId: Overload:Toorah.MirrorUI.Mirror.IsInteger
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.IsInteger
+  nameWithType: Mirror.IsInteger
+- uid: Toorah.MirrorUI.Mirror.IsNumber(System.Type)
+  name: IsNumber(Type)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsNumber_System_Type_
+  commentId: M:Toorah.MirrorUI.Mirror.IsNumber(System.Type)
+  fullName: Toorah.MirrorUI.Mirror.IsNumber(System.Type)
+  nameWithType: Mirror.IsNumber(Type)
+- uid: Toorah.MirrorUI.Mirror.IsNumber*
+  name: IsNumber
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsNumber_
+  commentId: Overload:Toorah.MirrorUI.Mirror.IsNumber
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.IsNumber
+  nameWithType: Mirror.IsNumber
+- uid: Toorah.MirrorUI.Mirror.IsText(System.Type)
+  name: IsText(Type)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsText_System_Type_
+  commentId: M:Toorah.MirrorUI.Mirror.IsText(System.Type)
+  fullName: Toorah.MirrorUI.Mirror.IsText(System.Type)
+  nameWithType: Mirror.IsText(Type)
+- uid: Toorah.MirrorUI.Mirror.IsText*
+  name: IsText
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsText_
+  commentId: Overload:Toorah.MirrorUI.Mirror.IsText
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.IsText
+  nameWithType: Mirror.IsText
+- uid: Toorah.MirrorUI.Mirror.IsUnsigned(System.Type)
+  name: IsUnsigned(Type)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsUnsigned_System_Type_
+  commentId: M:Toorah.MirrorUI.Mirror.IsUnsigned(System.Type)
+  fullName: Toorah.MirrorUI.Mirror.IsUnsigned(System.Type)
+  nameWithType: Mirror.IsUnsigned(Type)
+- uid: Toorah.MirrorUI.Mirror.IsUnsigned*
+  name: IsUnsigned
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_IsUnsigned_
+  commentId: Overload:Toorah.MirrorUI.Mirror.IsUnsigned
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.IsUnsigned
+  nameWithType: Mirror.IsUnsigned
+- uid: Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.FieldInfo,System.Single@,System.Single@)
+  name: TryGetRangeAttribute(FieldInfo, out Single, out Single)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_TryGetRangeAttribute_System_Reflection_FieldInfo_System_Single__System_Single__
+  commentId: M:Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.FieldInfo,System.Single@,System.Single@)
+  name.vb: TryGetRangeAttribute(FieldInfo, ByRef Single, ByRef Single)
+  fullName: Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.FieldInfo, out System.Single, out System.Single)
+  fullName.vb: Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.FieldInfo, ByRef System.Single, ByRef System.Single)
+  nameWithType: Mirror.TryGetRangeAttribute(FieldInfo, out Single, out Single)
+  nameWithType.vb: Mirror.TryGetRangeAttribute(FieldInfo, ByRef Single, ByRef Single)
+- uid: Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.PropertyInfo,System.Single@,System.Single@)
+  name: TryGetRangeAttribute(PropertyInfo, out Single, out Single)
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_TryGetRangeAttribute_System_Reflection_PropertyInfo_System_Single__System_Single__
+  commentId: M:Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.PropertyInfo,System.Single@,System.Single@)
+  name.vb: TryGetRangeAttribute(PropertyInfo, ByRef Single, ByRef Single)
+  fullName: Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.PropertyInfo, out System.Single, out System.Single)
+  fullName.vb: Toorah.MirrorUI.Mirror.TryGetRangeAttribute(System.Reflection.PropertyInfo, ByRef System.Single, ByRef System.Single)
+  nameWithType: Mirror.TryGetRangeAttribute(PropertyInfo, out Single, out Single)
+  nameWithType.vb: Mirror.TryGetRangeAttribute(PropertyInfo, ByRef Single, ByRef Single)
+- uid: Toorah.MirrorUI.Mirror.TryGetRangeAttribute*
+  name: TryGetRangeAttribute
+  href: api/Toorah.MirrorUI.Mirror.html#Toorah_MirrorUI_Mirror_TryGetRangeAttribute_
+  commentId: Overload:Toorah.MirrorUI.Mirror.TryGetRangeAttribute
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.Mirror.TryGetRangeAttribute
+  nameWithType: Mirror.TryGetRangeAttribute
+- uid: Toorah.MirrorUI.Resources
+  name: Toorah.MirrorUI.Resources
+  href: api/Toorah.MirrorUI.Resources.html
+  commentId: N:Toorah.MirrorUI.Resources
+  fullName: Toorah.MirrorUI.Resources
+  nameWithType: Toorah.MirrorUI.Resources
+- uid: Toorah.MirrorUI.Resources.UIResources
+  name: UIResources
+  href: api/Toorah.MirrorUI.Resources.UIResources.html
+  commentId: T:Toorah.MirrorUI.Resources.UIResources
+  fullName: Toorah.MirrorUI.Resources.UIResources
+  nameWithType: UIResources
+- uid: Toorah.MirrorUI.Resources.UIResources.button
+  name: button
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_button
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.button
+  fullName: Toorah.MirrorUI.Resources.UIResources.button
+  nameWithType: UIResources.button
+- uid: Toorah.MirrorUI.Resources.UIResources.dropdown
+  name: dropdown
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_dropdown
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.dropdown
+  fullName: Toorah.MirrorUI.Resources.UIResources.dropdown
+  nameWithType: UIResources.dropdown
+- uid: Toorah.MirrorUI.Resources.UIResources.image
+  name: image
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_image
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.image
+  fullName: Toorah.MirrorUI.Resources.UIResources.image
+  nameWithType: UIResources.image
+- uid: Toorah.MirrorUI.Resources.UIResources.inputField
+  name: inputField
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_inputField
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.inputField
+  fullName: Toorah.MirrorUI.Resources.UIResources.inputField
+  nameWithType: UIResources.inputField
+- uid: Toorah.MirrorUI.Resources.UIResources.label
+  name: label
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_label
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.label
+  fullName: Toorah.MirrorUI.Resources.UIResources.label
+  nameWithType: UIResources.label
+- uid: Toorah.MirrorUI.Resources.UIResources.scrollBar
+  name: scrollBar
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_scrollBar
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.scrollBar
+  fullName: Toorah.MirrorUI.Resources.UIResources.scrollBar
+  nameWithType: UIResources.scrollBar
+- uid: Toorah.MirrorUI.Resources.UIResources.slider
+  name: slider
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_slider
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.slider
+  fullName: Toorah.MirrorUI.Resources.UIResources.slider
+  nameWithType: UIResources.slider
+- uid: Toorah.MirrorUI.Resources.UIResources.toggle
+  name: toggle
+  href: api/Toorah.MirrorUI.Resources.UIResources.html#Toorah_MirrorUI_Resources_UIResources_toggle
+  commentId: F:Toorah.MirrorUI.Resources.UIResources.toggle
+  fullName: Toorah.MirrorUI.Resources.UIResources.toggle
+  nameWithType: UIResources.toggle
+- uid: Toorah.MirrorUI.UIHintAttribute
+  name: UIHintAttribute
+  href: api/Toorah.MirrorUI.UIHintAttribute.html
+  commentId: T:Toorah.MirrorUI.UIHintAttribute
+  fullName: Toorah.MirrorUI.UIHintAttribute
+  nameWithType: UIHintAttribute
+- uid: Toorah.MirrorUI.UIHintAttribute.#ctor(System.String)
+  name: UIHintAttribute(String)
+  href: api/Toorah.MirrorUI.UIHintAttribute.html#Toorah_MirrorUI_UIHintAttribute__ctor_System_String_
+  commentId: M:Toorah.MirrorUI.UIHintAttribute.#ctor(System.String)
+  fullName: Toorah.MirrorUI.UIHintAttribute.UIHintAttribute(System.String)
+  nameWithType: UIHintAttribute.UIHintAttribute(String)
+- uid: Toorah.MirrorUI.UIHintAttribute.#ctor*
+  name: UIHintAttribute
+  href: api/Toorah.MirrorUI.UIHintAttribute.html#Toorah_MirrorUI_UIHintAttribute__ctor_
+  commentId: Overload:Toorah.MirrorUI.UIHintAttribute.#ctor
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UIHintAttribute.UIHintAttribute
+  nameWithType: UIHintAttribute.UIHintAttribute
+- uid: Toorah.MirrorUI.UIHintAttribute.hintText
+  name: hintText
+  href: api/Toorah.MirrorUI.UIHintAttribute.html#Toorah_MirrorUI_UIHintAttribute_hintText
+  commentId: F:Toorah.MirrorUI.UIHintAttribute.hintText
+  fullName: Toorah.MirrorUI.UIHintAttribute.hintText
+  nameWithType: UIHintAttribute.hintText
+- uid: Toorah.MirrorUI.UILinker
+  name: UILinker
+  href: api/Toorah.MirrorUI.UILinker.html
+  commentId: T:Toorah.MirrorUI.UILinker
+  fullName: Toorah.MirrorUI.UILinker
+  nameWithType: UILinker
+- uid: Toorah.MirrorUI.UILinker.DefaultFunc*
+  name: DefaultFunc
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_DefaultFunc_
+  commentId: Overload:Toorah.MirrorUI.UILinker.DefaultFunc
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UILinker.DefaultFunc
+  nameWithType: UILinker.DefaultFunc
+- uid: Toorah.MirrorUI.UILinker.DefaultFunc``1(``0)
+  name: DefaultFunc<T>(T)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_DefaultFunc__1___0_
+  commentId: M:Toorah.MirrorUI.UILinker.DefaultFunc``1(``0)
+  name.vb: DefaultFunc(Of T)(T)
+  fullName: Toorah.MirrorUI.UILinker.DefaultFunc<T>(T)
+  fullName.vb: Toorah.MirrorUI.UILinker.DefaultFunc(Of T)(T)
+  nameWithType: UILinker.DefaultFunc<T>(T)
+  nameWithType.vb: UILinker.DefaultFunc(Of T)(T)
+- uid: Toorah.MirrorUI.UILinker.LinkDropdown*
+  name: LinkDropdown
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkDropdown_
+  commentId: Overload:Toorah.MirrorUI.UILinker.LinkDropdown
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UILinker.LinkDropdown
+  nameWithType: UILinker.LinkDropdown
+- uid: Toorah.MirrorUI.UILinker.LinkDropdown``1(TMP_Dropdown,``0,System.Action{``0})
+  name: LinkDropdown<TEnum>(TMP_Dropdown, TEnum, Action<TEnum>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkDropdown__1_TMP_Dropdown___0_System_Action___0__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkDropdown``1(TMP_Dropdown,``0,System.Action{``0})
+  name.vb: LinkDropdown(Of TEnum)(TMP_Dropdown, TEnum, Action(Of TEnum))
+  fullName: Toorah.MirrorUI.UILinker.LinkDropdown<TEnum>(TMP_Dropdown, TEnum, System.Action<TEnum>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkDropdown(Of TEnum)(TMP_Dropdown, TEnum, System.Action(Of TEnum))
+  nameWithType: UILinker.LinkDropdown<TEnum>(TMP_Dropdown, TEnum, Action<TEnum>)
+  nameWithType.vb: UILinker.LinkDropdown(Of TEnum)(TMP_Dropdown, TEnum, Action(Of TEnum))
+- uid: Toorah.MirrorUI.UILinker.LinkDropdown``1(TMP_Dropdown,``0,System.Collections.Generic.IEnumerable{``0},System.Action{``0},System.Func{``0,System.String})
+  name: LinkDropdown<T>(TMP_Dropdown, T, IEnumerable<T>, Action<T>, Func<T, String>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkDropdown__1_TMP_Dropdown___0_System_Collections_Generic_IEnumerable___0__System_Action___0__System_Func___0_System_String__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkDropdown``1(TMP_Dropdown,``0,System.Collections.Generic.IEnumerable{``0},System.Action{``0},System.Func{``0,System.String})
+  name.vb: LinkDropdown(Of T)(TMP_Dropdown, T, IEnumerable(Of T), Action(Of T), Func(Of T, String))
+  fullName: Toorah.MirrorUI.UILinker.LinkDropdown<T>(TMP_Dropdown, T, System.Collections.Generic.IEnumerable<T>, System.Action<T>, System.Func<T, System.String>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkDropdown(Of T)(TMP_Dropdown, T, System.Collections.Generic.IEnumerable(Of T), System.Action(Of T), System.Func(Of T, System.String))
+  nameWithType: UILinker.LinkDropdown<T>(TMP_Dropdown, T, IEnumerable<T>, Action<T>, Func<T, String>)
+  nameWithType.vb: UILinker.LinkDropdown(Of T)(TMP_Dropdown, T, IEnumerable(Of T), Action(Of T), Func(Of T, String))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Double,System.Action{System.Double})
+  name: LinkInput(TMP_InputField, Double, Action<Double>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_Double_System_Action_System_Double__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Double,System.Action{System.Double})
+  name.vb: LinkInput(TMP_InputField, Double, Action(Of Double))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Double, System.Action<System.Double>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Double, System.Action(Of System.Double))
+  nameWithType: UILinker.LinkInput(TMP_InputField, Double, Action<Double>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, Double, Action(Of Double))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Int16,System.Action{System.Int16})
+  name: LinkInput(TMP_InputField, Int16, Action<Int16>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_Int16_System_Action_System_Int16__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Int16,System.Action{System.Int16})
+  name.vb: LinkInput(TMP_InputField, Int16, Action(Of Int16))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Int16, System.Action<System.Int16>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Int16, System.Action(Of System.Int16))
+  nameWithType: UILinker.LinkInput(TMP_InputField, Int16, Action<Int16>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, Int16, Action(Of Int16))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Int32,System.Action{System.Int32})
+  name: LinkInput(TMP_InputField, Int32, Action<Int32>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_Int32_System_Action_System_Int32__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Int32,System.Action{System.Int32})
+  name.vb: LinkInput(TMP_InputField, Int32, Action(Of Int32))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Int32, System.Action<System.Int32>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Int32, System.Action(Of System.Int32))
+  nameWithType: UILinker.LinkInput(TMP_InputField, Int32, Action<Int32>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, Int32, Action(Of Int32))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Int64,System.Action{System.Int64})
+  name: LinkInput(TMP_InputField, Int64, Action<Int64>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_Int64_System_Action_System_Int64__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Int64,System.Action{System.Int64})
+  name.vb: LinkInput(TMP_InputField, Int64, Action(Of Int64))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Int64, System.Action<System.Int64>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Int64, System.Action(Of System.Int64))
+  nameWithType: UILinker.LinkInput(TMP_InputField, Int64, Action<Int64>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, Int64, Action(Of Int64))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Single,System.Action{System.Single})
+  name: LinkInput(TMP_InputField, Single, Action<Single>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_Single_System_Action_System_Single__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.Single,System.Action{System.Single})
+  name.vb: LinkInput(TMP_InputField, Single, Action(Of Single))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Single, System.Action<System.Single>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.Single, System.Action(Of System.Single))
+  nameWithType: UILinker.LinkInput(TMP_InputField, Single, Action<Single>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, Single, Action(Of Single))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.String,System.Action{System.String})
+  name: LinkInput(TMP_InputField, String, Action<String>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_String_System_Action_System_String__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.String,System.Action{System.String})
+  name.vb: LinkInput(TMP_InputField, String, Action(Of String))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.String, System.Action<System.String>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.String, System.Action(Of System.String))
+  nameWithType: UILinker.LinkInput(TMP_InputField, String, Action<String>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, String, Action(Of String))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.UInt16,System.Action{System.UInt16})
+  name: LinkInput(TMP_InputField, UInt16, Action<UInt16>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_UInt16_System_Action_System_UInt16__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.UInt16,System.Action{System.UInt16})
+  name.vb: LinkInput(TMP_InputField, UInt16, Action(Of UInt16))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.UInt16, System.Action<System.UInt16>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.UInt16, System.Action(Of System.UInt16))
+  nameWithType: UILinker.LinkInput(TMP_InputField, UInt16, Action<UInt16>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, UInt16, Action(Of UInt16))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.UInt32,System.Action{System.UInt32})
+  name: LinkInput(TMP_InputField, UInt32, Action<UInt32>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_UInt32_System_Action_System_UInt32__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.UInt32,System.Action{System.UInt32})
+  name.vb: LinkInput(TMP_InputField, UInt32, Action(Of UInt32))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.UInt32, System.Action<System.UInt32>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.UInt32, System.Action(Of System.UInt32))
+  nameWithType: UILinker.LinkInput(TMP_InputField, UInt32, Action<UInt32>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, UInt32, Action(Of UInt32))
+- uid: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.UInt64,System.Action{System.UInt64})
+  name: LinkInput(TMP_InputField, UInt64, Action<UInt64>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_TMP_InputField_System_UInt64_System_Action_System_UInt64__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField,System.UInt64,System.Action{System.UInt64})
+  name.vb: LinkInput(TMP_InputField, UInt64, Action(Of UInt64))
+  fullName: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.UInt64, System.Action<System.UInt64>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkInput(TMP_InputField, System.UInt64, System.Action(Of System.UInt64))
+  nameWithType: UILinker.LinkInput(TMP_InputField, UInt64, Action<UInt64>)
+  nameWithType.vb: UILinker.LinkInput(TMP_InputField, UInt64, Action(Of UInt64))
+- uid: Toorah.MirrorUI.UILinker.LinkInput*
+  name: LinkInput
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkInput_
+  commentId: Overload:Toorah.MirrorUI.UILinker.LinkInput
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UILinker.LinkInput
+  nameWithType: UILinker.LinkInput
+- uid: Toorah.MirrorUI.UILinker.LinkSlider(Slider,System.Single,System.Action{System.Single})
+  name: LinkSlider(Slider, Single, Action<Single>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkSlider_Slider_System_Single_System_Action_System_Single__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkSlider(Slider,System.Single,System.Action{System.Single})
+  name.vb: LinkSlider(Slider, Single, Action(Of Single))
+  fullName: Toorah.MirrorUI.UILinker.LinkSlider(Slider, System.Single, System.Action<System.Single>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkSlider(Slider, System.Single, System.Action(Of System.Single))
+  nameWithType: UILinker.LinkSlider(Slider, Single, Action<Single>)
+  nameWithType.vb: UILinker.LinkSlider(Slider, Single, Action(Of Single))
+- uid: Toorah.MirrorUI.UILinker.LinkSlider(Slider,System.Single,System.Nullable{System.Single},System.Nullable{System.Single},System.Action{System.Single})
+  name: LinkSlider(Slider, Single, Nullable<Single>, Nullable<Single>, Action<Single>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkSlider_Slider_System_Single_System_Nullable_System_Single__System_Nullable_System_Single__System_Action_System_Single__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkSlider(Slider,System.Single,System.Nullable{System.Single},System.Nullable{System.Single},System.Action{System.Single})
+  name.vb: LinkSlider(Slider, Single, Nullable(Of Single), Nullable(Of Single), Action(Of Single))
+  fullName: Toorah.MirrorUI.UILinker.LinkSlider(Slider, System.Single, System.Nullable<System.Single>, System.Nullable<System.Single>, System.Action<System.Single>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkSlider(Slider, System.Single, System.Nullable(Of System.Single), System.Nullable(Of System.Single), System.Action(Of System.Single))
+  nameWithType: UILinker.LinkSlider(Slider, Single, Nullable<Single>, Nullable<Single>, Action<Single>)
+  nameWithType.vb: UILinker.LinkSlider(Slider, Single, Nullable(Of Single), Nullable(Of Single), Action(Of Single))
+- uid: Toorah.MirrorUI.UILinker.LinkSlider*
+  name: LinkSlider
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkSlider_
+  commentId: Overload:Toorah.MirrorUI.UILinker.LinkSlider
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UILinker.LinkSlider
+  nameWithType: UILinker.LinkSlider
+- uid: Toorah.MirrorUI.UILinker.LinkToggle(Toggle,System.Boolean,System.Action{System.Boolean})
+  name: LinkToggle(Toggle, Boolean, Action<Boolean>)
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkToggle_Toggle_System_Boolean_System_Action_System_Boolean__
+  commentId: M:Toorah.MirrorUI.UILinker.LinkToggle(Toggle,System.Boolean,System.Action{System.Boolean})
+  name.vb: LinkToggle(Toggle, Boolean, Action(Of Boolean))
+  fullName: Toorah.MirrorUI.UILinker.LinkToggle(Toggle, System.Boolean, System.Action<System.Boolean>)
+  fullName.vb: Toorah.MirrorUI.UILinker.LinkToggle(Toggle, System.Boolean, System.Action(Of System.Boolean))
+  nameWithType: UILinker.LinkToggle(Toggle, Boolean, Action<Boolean>)
+  nameWithType.vb: UILinker.LinkToggle(Toggle, Boolean, Action(Of Boolean))
+- uid: Toorah.MirrorUI.UILinker.LinkToggle*
+  name: LinkToggle
+  href: api/Toorah.MirrorUI.UILinker.html#Toorah_MirrorUI_UILinker_LinkToggle_
+  commentId: Overload:Toorah.MirrorUI.UILinker.LinkToggle
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UILinker.LinkToggle
+  nameWithType: UILinker.LinkToggle
+- uid: Toorah.MirrorUI.UIRangeAttribute
+  name: UIRangeAttribute
+  href: api/Toorah.MirrorUI.UIRangeAttribute.html
+  commentId: T:Toorah.MirrorUI.UIRangeAttribute
+  fullName: Toorah.MirrorUI.UIRangeAttribute
+  nameWithType: UIRangeAttribute
+- uid: Toorah.MirrorUI.UIRangeAttribute.#ctor(System.Single,System.Single)
+  name: UIRangeAttribute(Single, Single)
+  href: api/Toorah.MirrorUI.UIRangeAttribute.html#Toorah_MirrorUI_UIRangeAttribute__ctor_System_Single_System_Single_
+  commentId: M:Toorah.MirrorUI.UIRangeAttribute.#ctor(System.Single,System.Single)
+  fullName: Toorah.MirrorUI.UIRangeAttribute.UIRangeAttribute(System.Single, System.Single)
+  nameWithType: UIRangeAttribute.UIRangeAttribute(Single, Single)
+- uid: Toorah.MirrorUI.UIRangeAttribute.#ctor*
+  name: UIRangeAttribute
+  href: api/Toorah.MirrorUI.UIRangeAttribute.html#Toorah_MirrorUI_UIRangeAttribute__ctor_
+  commentId: Overload:Toorah.MirrorUI.UIRangeAttribute.#ctor
+  isSpec: "True"
+  fullName: Toorah.MirrorUI.UIRangeAttribute.UIRangeAttribute
+  nameWithType: UIRangeAttribute.UIRangeAttribute
+- uid: Toorah.MirrorUI.UIRangeAttribute.max
+  name: max
+  href: api/Toorah.MirrorUI.UIRangeAttribute.html#Toorah_MirrorUI_UIRangeAttribute_max
+  commentId: F:Toorah.MirrorUI.UIRangeAttribute.max
+  fullName: Toorah.MirrorUI.UIRangeAttribute.max
+  nameWithType: UIRangeAttribute.max
+- uid: Toorah.MirrorUI.UIRangeAttribute.min
+  name: min
+  href: api/Toorah.MirrorUI.UIRangeAttribute.html#Toorah_MirrorUI_UIRangeAttribute_min
+  commentId: F:Toorah.MirrorUI.UIRangeAttribute.min
+  fullName: Toorah.MirrorUI.UIRangeAttribute.min
+  nameWithType: UIRangeAttribute.min
+- uid: ToorahEditor.MirrorUI
+  name: ToorahEditor.MirrorUI
+  href: api/ToorahEditor.MirrorUI.html
+  commentId: N:ToorahEditor.MirrorUI
+  fullName: ToorahEditor.MirrorUI
+  nameWithType: ToorahEditor.MirrorUI
+- uid: ToorahEditor.MirrorUI.AboutWindow
+  name: AboutWindow
+  href: api/ToorahEditor.MirrorUI.AboutWindow.html
+  commentId: T:ToorahEditor.MirrorUI.AboutWindow
+  fullName: ToorahEditor.MirrorUI.AboutWindow
+  nameWithType: AboutWindow
+- uid: ToorahEditor.MirrorUI.StringEx
+  name: StringEx
+  href: api/ToorahEditor.MirrorUI.StringEx.html
+  commentId: T:ToorahEditor.MirrorUI.StringEx
+  fullName: ToorahEditor.MirrorUI.StringEx
+  nameWithType: StringEx
+- uid: ToorahEditor.MirrorUI.StringEx.AddUsingStatements(StringBuilder,System.String[])
+  name: AddUsingStatements(StringBuilder, String[])
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_AddUsingStatements_StringBuilder_System_String___
+  commentId: M:ToorahEditor.MirrorUI.StringEx.AddUsingStatements(StringBuilder,System.String[])
+  name.vb: AddUsingStatements(StringBuilder, String())
+  fullName: ToorahEditor.MirrorUI.StringEx.AddUsingStatements(StringBuilder, System.String[])
+  fullName.vb: ToorahEditor.MirrorUI.StringEx.AddUsingStatements(StringBuilder, System.String())
+  nameWithType: StringEx.AddUsingStatements(StringBuilder, String[])
+  nameWithType.vb: StringEx.AddUsingStatements(StringBuilder, String())
+- uid: ToorahEditor.MirrorUI.StringEx.AddUsingStatements*
+  name: AddUsingStatements
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_AddUsingStatements_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.AddUsingStatements
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.AddUsingStatements
+  nameWithType: StringEx.AddUsingStatements
+- uid: ToorahEditor.MirrorUI.StringEx.Color(System.String,Color)
+  name: Color(String, Color)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_Color_System_String_Color_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.Color(System.String,Color)
+  fullName: ToorahEditor.MirrorUI.StringEx.Color(System.String, Color)
+  nameWithType: StringEx.Color(String, Color)
+- uid: ToorahEditor.MirrorUI.StringEx.Color(System.String,System.String)
+  name: Color(String, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_Color_System_String_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.Color(System.String,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.Color(System.String, System.String)
+  nameWithType: StringEx.Color(String, String)
+- uid: ToorahEditor.MirrorUI.StringEx.Color*
+  name: Color
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_Color_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.Color
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.Color
+  nameWithType: StringEx.Color
+- uid: ToorahEditor.MirrorUI.StringEx.Colorize(System.String,System.String,Color)
+  name: Colorize(String, String, Color)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_Colorize_System_String_System_String_Color_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.Colorize(System.String,System.String,Color)
+  fullName: ToorahEditor.MirrorUI.StringEx.Colorize(System.String, System.String, Color)
+  nameWithType: StringEx.Colorize(String, String, Color)
+- uid: ToorahEditor.MirrorUI.StringEx.Colorize(System.String,System.String,System.String)
+  name: Colorize(String, String, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_Colorize_System_String_System_String_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.Colorize(System.String,System.String,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.Colorize(System.String, System.String, System.String)
+  nameWithType: StringEx.Colorize(String, String, String)
+- uid: ToorahEditor.MirrorUI.StringEx.Colorize*
+  name: Colorize
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_Colorize_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.Colorize
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.Colorize
+  nameWithType: StringEx.Colorize
+- uid: ToorahEditor.MirrorUI.StringEx.ColorizeComment(System.String,Color)
+  name: ColorizeComment(String, Color)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_ColorizeComment_System_String_Color_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.ColorizeComment(System.String,Color)
+  fullName: ToorahEditor.MirrorUI.StringEx.ColorizeComment(System.String, Color)
+  nameWithType: StringEx.ColorizeComment(String, Color)
+- uid: ToorahEditor.MirrorUI.StringEx.ColorizeComment(System.String,System.String)
+  name: ColorizeComment(String, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_ColorizeComment_System_String_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.ColorizeComment(System.String,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.ColorizeComment(System.String, System.String)
+  nameWithType: StringEx.ColorizeComment(String, String)
+- uid: ToorahEditor.MirrorUI.StringEx.ColorizeComment*
+  name: ColorizeComment
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_ColorizeComment_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.ColorizeComment
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.ColorizeComment
+  nameWithType: StringEx.ColorizeComment
+- uid: ToorahEditor.MirrorUI.StringEx.ColorizeRegion(System.String,Color)
+  name: ColorizeRegion(String, Color)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_ColorizeRegion_System_String_Color_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.ColorizeRegion(System.String,Color)
+  fullName: ToorahEditor.MirrorUI.StringEx.ColorizeRegion(System.String, Color)
+  nameWithType: StringEx.ColorizeRegion(String, Color)
+- uid: ToorahEditor.MirrorUI.StringEx.ColorizeRegion(System.String,System.String)
+  name: ColorizeRegion(String, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_ColorizeRegion_System_String_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.ColorizeRegion(System.String,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.ColorizeRegion(System.String, System.String)
+  nameWithType: StringEx.ColorizeRegion(String, String)
+- uid: ToorahEditor.MirrorUI.StringEx.ColorizeRegion*
+  name: ColorizeRegion
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_ColorizeRegion_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.ColorizeRegion
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.ColorizeRegion
+  nameWithType: StringEx.ColorizeRegion
+- uid: ToorahEditor.MirrorUI.StringEx.CreateTypeTooltip(StringBuilder,System.Type)
+  name: CreateTypeTooltip(StringBuilder, Type)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_CreateTypeTooltip_StringBuilder_System_Type_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.CreateTypeTooltip(StringBuilder,System.Type)
+  fullName: ToorahEditor.MirrorUI.StringEx.CreateTypeTooltip(StringBuilder, System.Type)
+  nameWithType: StringEx.CreateTypeTooltip(StringBuilder, Type)
+- uid: ToorahEditor.MirrorUI.StringEx.CreateTypeTooltip*
+  name: CreateTypeTooltip
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_CreateTypeTooltip_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.CreateTypeTooltip
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.CreateTypeTooltip
+  nameWithType: StringEx.CreateTypeTooltip
+- uid: ToorahEditor.MirrorUI.StringEx.DefineClass(StringBuilder,System.String,System.Boolean,System.String)
+  name: DefineClass(StringBuilder, String, Boolean, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineClass_StringBuilder_System_String_System_Boolean_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.DefineClass(StringBuilder,System.String,System.Boolean,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineClass(StringBuilder, System.String, System.Boolean, System.String)
+  nameWithType: StringEx.DefineClass(StringBuilder, String, Boolean, String)
+- uid: ToorahEditor.MirrorUI.StringEx.DefineClass*
+  name: DefineClass
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineClass_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.DefineClass
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineClass
+  nameWithType: StringEx.DefineClass
+- uid: ToorahEditor.MirrorUI.StringEx.DefineDropdown(StringBuilder,System.String)
+  name: DefineDropdown(StringBuilder, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineDropdown_StringBuilder_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.DefineDropdown(StringBuilder,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineDropdown(StringBuilder, System.String)
+  nameWithType: StringEx.DefineDropdown(StringBuilder, String)
+- uid: ToorahEditor.MirrorUI.StringEx.DefineDropdown*
+  name: DefineDropdown
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineDropdown_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.DefineDropdown
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineDropdown
+  nameWithType: StringEx.DefineDropdown
+- uid: ToorahEditor.MirrorUI.StringEx.DefineInput(StringBuilder,System.String)
+  name: DefineInput(StringBuilder, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineInput_StringBuilder_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.DefineInput(StringBuilder,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineInput(StringBuilder, System.String)
+  nameWithType: StringEx.DefineInput(StringBuilder, String)
+- uid: ToorahEditor.MirrorUI.StringEx.DefineInput*
+  name: DefineInput
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineInput_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.DefineInput
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineInput
+  nameWithType: StringEx.DefineInput
+- uid: ToorahEditor.MirrorUI.StringEx.DefineMethod(StringBuilder,System.String,System.Type)
+  name: DefineMethod(StringBuilder, String, Type)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineMethod_StringBuilder_System_String_System_Type_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.DefineMethod(StringBuilder,System.String,System.Type)
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineMethod(StringBuilder, System.String, System.Type)
+  nameWithType: StringEx.DefineMethod(StringBuilder, String, Type)
+- uid: ToorahEditor.MirrorUI.StringEx.DefineMethod*
+  name: DefineMethod
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineMethod_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.DefineMethod
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineMethod
+  nameWithType: StringEx.DefineMethod
+- uid: ToorahEditor.MirrorUI.StringEx.DefineSlider(StringBuilder,System.String)
+  name: DefineSlider(StringBuilder, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineSlider_StringBuilder_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.DefineSlider(StringBuilder,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineSlider(StringBuilder, System.String)
+  nameWithType: StringEx.DefineSlider(StringBuilder, String)
+- uid: ToorahEditor.MirrorUI.StringEx.DefineSlider*
+  name: DefineSlider
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineSlider_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.DefineSlider
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineSlider
+  nameWithType: StringEx.DefineSlider
+- uid: ToorahEditor.MirrorUI.StringEx.DefineToggle(StringBuilder,System.String)
+  name: DefineToggle(StringBuilder, String)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineToggle_StringBuilder_System_String_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.DefineToggle(StringBuilder,System.String)
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineToggle(StringBuilder, System.String)
+  nameWithType: StringEx.DefineToggle(StringBuilder, String)
+- uid: ToorahEditor.MirrorUI.StringEx.DefineToggle*
+  name: DefineToggle
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_DefineToggle_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.DefineToggle
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.DefineToggle
+  nameWithType: StringEx.DefineToggle
+- uid: ToorahEditor.MirrorUI.StringEx.LinkDropdown(StringBuilder,MirrorData,System.Int32)
+  name: LinkDropdown(StringBuilder, MirrorData, Int32)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkDropdown_StringBuilder_MirrorData_System_Int32_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.LinkDropdown(StringBuilder,MirrorData,System.Int32)
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkDropdown(StringBuilder, MirrorData, System.Int32)
+  nameWithType: StringEx.LinkDropdown(StringBuilder, MirrorData, Int32)
+- uid: ToorahEditor.MirrorUI.StringEx.LinkDropdown*
+  name: LinkDropdown
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkDropdown_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.LinkDropdown
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkDropdown
+  nameWithType: StringEx.LinkDropdown
+- uid: ToorahEditor.MirrorUI.StringEx.LinkInputField(StringBuilder,MirrorData,System.Int32)
+  name: LinkInputField(StringBuilder, MirrorData, Int32)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkInputField_StringBuilder_MirrorData_System_Int32_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.LinkInputField(StringBuilder,MirrorData,System.Int32)
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkInputField(StringBuilder, MirrorData, System.Int32)
+  nameWithType: StringEx.LinkInputField(StringBuilder, MirrorData, Int32)
+- uid: ToorahEditor.MirrorUI.StringEx.LinkInputField*
+  name: LinkInputField
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkInputField_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.LinkInputField
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkInputField
+  nameWithType: StringEx.LinkInputField
+- uid: ToorahEditor.MirrorUI.StringEx.LinkSlider(StringBuilder,MirrorData,System.Nullable{System.Single},System.Nullable{System.Single},System.Int32)
+  name: LinkSlider(StringBuilder, MirrorData, Nullable<Single>, Nullable<Single>, Int32)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkSlider_StringBuilder_MirrorData_System_Nullable_System_Single__System_Nullable_System_Single__System_Int32_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.LinkSlider(StringBuilder,MirrorData,System.Nullable{System.Single},System.Nullable{System.Single},System.Int32)
+  name.vb: LinkSlider(StringBuilder, MirrorData, Nullable(Of Single), Nullable(Of Single), Int32)
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkSlider(StringBuilder, MirrorData, System.Nullable<System.Single>, System.Nullable<System.Single>, System.Int32)
+  fullName.vb: ToorahEditor.MirrorUI.StringEx.LinkSlider(StringBuilder, MirrorData, System.Nullable(Of System.Single), System.Nullable(Of System.Single), System.Int32)
+  nameWithType: StringEx.LinkSlider(StringBuilder, MirrorData, Nullable<Single>, Nullable<Single>, Int32)
+  nameWithType.vb: StringEx.LinkSlider(StringBuilder, MirrorData, Nullable(Of Single), Nullable(Of Single), Int32)
+- uid: ToorahEditor.MirrorUI.StringEx.LinkSlider*
+  name: LinkSlider
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkSlider_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.LinkSlider
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkSlider
+  nameWithType: StringEx.LinkSlider
+- uid: ToorahEditor.MirrorUI.StringEx.LinkToggle(StringBuilder,MirrorData,System.Int32)
+  name: LinkToggle(StringBuilder, MirrorData, Int32)
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkToggle_StringBuilder_MirrorData_System_Int32_
+  commentId: M:ToorahEditor.MirrorUI.StringEx.LinkToggle(StringBuilder,MirrorData,System.Int32)
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkToggle(StringBuilder, MirrorData, System.Int32)
+  nameWithType: StringEx.LinkToggle(StringBuilder, MirrorData, Int32)
+- uid: ToorahEditor.MirrorUI.StringEx.LinkToggle*
+  name: LinkToggle
+  href: api/ToorahEditor.MirrorUI.StringEx.html#ToorahEditor_MirrorUI_StringEx_LinkToggle_
+  commentId: Overload:ToorahEditor.MirrorUI.StringEx.LinkToggle
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.StringEx.LinkToggle
+  nameWithType: StringEx.LinkToggle
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow
+  name: UIBuilderWindow
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.html
+  commentId: T:ToorahEditor.MirrorUI.UIBuilderWindow
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow
+  nameWithType: UIBuilderWindow
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData
+  name: UIBuilderWindow.MirrorData
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html
+  commentId: T:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData
+  nameWithType: UIBuilderWindow.MirrorData
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.#ctor(System.Reflection.FieldInfo)
+  name: MirrorData(FieldInfo)
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData__ctor_System_Reflection_FieldInfo_
+  commentId: M:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.#ctor(System.Reflection.FieldInfo)
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.MirrorData(System.Reflection.FieldInfo)
+  nameWithType: UIBuilderWindow.MirrorData.MirrorData(FieldInfo)
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.#ctor(System.Reflection.PropertyInfo)
+  name: MirrorData(PropertyInfo)
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData__ctor_System_Reflection_PropertyInfo_
+  commentId: M:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.#ctor(System.Reflection.PropertyInfo)
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.MirrorData(System.Reflection.PropertyInfo)
+  nameWithType: UIBuilderWindow.MirrorData.MirrorData(PropertyInfo)
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.#ctor*
+  name: MirrorData
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData__ctor_
+  commentId: Overload:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.#ctor
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.MirrorData
+  nameWithType: UIBuilderWindow.MirrorData.MirrorData
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.CanRead
+  name: CanRead
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_CanRead
+  commentId: F:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.CanRead
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.CanRead
+  nameWithType: UIBuilderWindow.MirrorData.CanRead
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.CanWrite
+  name: CanWrite
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_CanWrite
+  commentId: F:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.CanWrite
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.CanWrite
+  nameWithType: UIBuilderWindow.MirrorData.CanWrite
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.field
+  name: field
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_field
+  commentId: F:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.field
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.field
+  nameWithType: UIBuilderWindow.MirrorData.field
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.isField
+  name: isField
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_isField
+  commentId: F:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.isField
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.isField
+  nameWithType: UIBuilderWindow.MirrorData.isField
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Name
+  name: Name
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_Name
+  commentId: P:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Name
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Name
+  nameWithType: UIBuilderWindow.MirrorData.Name
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Name*
+  name: Name
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_Name_
+  commentId: Overload:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Name
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Name
+  nameWithType: UIBuilderWindow.MirrorData.Name
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Namespace
+  name: Namespace
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_Namespace
+  commentId: P:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Namespace
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Namespace
+  nameWithType: UIBuilderWindow.MirrorData.Namespace
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Namespace*
+  name: Namespace
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_Namespace_
+  commentId: Overload:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Namespace
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Namespace
+  nameWithType: UIBuilderWindow.MirrorData.Namespace
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.property
+  name: property
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_property
+  commentId: F:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.property
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.property
+  nameWithType: UIBuilderWindow.MirrorData.property
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Type
+  name: Type
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_Type
+  commentId: P:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Type
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Type
+  nameWithType: UIBuilderWindow.MirrorData.Type
+- uid: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Type*
+  name: Type
+  href: api/ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.html#ToorahEditor_MirrorUI_UIBuilderWindow_MirrorData_Type_
+  commentId: Overload:ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Type
+  isSpec: "True"
+  fullName: ToorahEditor.MirrorUI.UIBuilderWindow.MirrorData.Type
+  nameWithType: UIBuilderWindow.MirrorData.Type
+- uid: ToorahUI.Test
+  name: ToorahUI.Test
+  href: api/ToorahUI.Test.html
+  commentId: N:ToorahUI.Test
+  fullName: ToorahUI.Test
+  nameWithType: ToorahUI.Test
+- uid: ToorahUI.Test.TestUIBuilder
+  name: TestUIBuilder
+  href: api/ToorahUI.Test.TestUIBuilder.html
+  commentId: T:ToorahUI.Test.TestUIBuilder
+  fullName: ToorahUI.Test.TestUIBuilder
+  nameWithType: TestUIBuilder
+- uid: ToorahUI.Test.TestUIBuilder.container
+  name: container
+  href: api/ToorahUI.Test.TestUIBuilder.html#ToorahUI_Test_TestUIBuilder_container
+  commentId: F:ToorahUI.Test.TestUIBuilder.container
+  fullName: ToorahUI.Test.TestUIBuilder.container
+  nameWithType: TestUIBuilder.container
+- uid: ToorahUI.Test.TestUIBuilder.test
+  name: test
+  href: api/ToorahUI.Test.TestUIBuilder.html#ToorahUI_Test_TestUIBuilder_test
+  commentId: F:ToorahUI.Test.TestUIBuilder.test
+  fullName: ToorahUI.Test.TestUIBuilder.test
+  nameWithType: TestUIBuilder.test
+- uid: ToorahUI.Test.TestUIBuilder.TestClass
+  name: TestUIBuilder.TestClass
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html
+  commentId: T:ToorahUI.Test.TestUIBuilder.TestClass
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass
+  nameWithType: TestUIBuilder.TestClass
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.address
+  name: address
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_address
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.address
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.address
+  nameWithType: TestUIBuilder.TestClass.address
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.address*
+  name: address
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_address_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.address
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.address
+  nameWithType: TestUIBuilder.TestClass.address
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.ArrayTest
+  name: ArrayTest
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_ArrayTest
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.ArrayTest
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.ArrayTest
+  nameWithType: TestUIBuilder.TestClass.ArrayTest
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.ArrayTest*
+  name: ArrayTest
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_ArrayTest_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.ArrayTest
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.ArrayTest
+  nameWithType: TestUIBuilder.TestClass.ArrayTest
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.firstname
+  name: firstname
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_firstname
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.firstname
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.firstname
+  nameWithType: TestUIBuilder.TestClass.firstname
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.firstname*
+  name: firstname
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_firstname_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.firstname
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.firstname
+  nameWithType: TestUIBuilder.TestClass.firstname
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.isDeveloper
+  name: isDeveloper
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_isDeveloper
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.isDeveloper
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.isDeveloper
+  nameWithType: TestUIBuilder.TestClass.isDeveloper
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.isDeveloper*
+  name: isDeveloper
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_isDeveloper_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.isDeveloper
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.isDeveloper
+  nameWithType: TestUIBuilder.TestClass.isDeveloper
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.isPatron
+  name: isPatron
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_isPatron
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.isPatron
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.isPatron
+  nameWithType: TestUIBuilder.TestClass.isPatron
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.isPatron*
+  name: isPatron
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_isPatron_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.isPatron
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.isPatron
+  nameWithType: TestUIBuilder.TestClass.isPatron
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.subscribeToSpam
+  name: subscribeToSpam
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_subscribeToSpam
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.subscribeToSpam
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.subscribeToSpam
+  nameWithType: TestUIBuilder.TestClass.subscribeToSpam
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.subscribeToSpam*
+  name: subscribeToSpam
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_subscribeToSpam_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.subscribeToSpam
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.subscribeToSpam
+  nameWithType: TestUIBuilder.TestClass.subscribeToSpam
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.surname
+  name: surname
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_surname
+  commentId: P:ToorahUI.Test.TestUIBuilder.TestClass.surname
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.surname
+  nameWithType: TestUIBuilder.TestClass.surname
+- uid: ToorahUI.Test.TestUIBuilder.TestClass.surname*
+  name: surname
+  href: api/ToorahUI.Test.TestUIBuilder.TestClass.html#ToorahUI_Test_TestUIBuilder_TestClass_surname_
+  commentId: Overload:ToorahUI.Test.TestUIBuilder.TestClass.surname
+  isSpec: "True"
+  fullName: ToorahUI.Test.TestUIBuilder.TestClass.surname
+  nameWithType: TestUIBuilder.TestClass.surname
