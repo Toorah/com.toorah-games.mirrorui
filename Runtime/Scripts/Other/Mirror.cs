@@ -99,10 +99,25 @@ namespace Toorah.MirrorUI
         #endregion
 
         #region Enum
+        /// <summary>
+        /// Get the Values available in an Enum
+        /// </summary>
+        /// <example>GetValues<MyEnum>();</example>
+        /// <typeparam name="TEnum">The Type of the Enum</typeparam>
+        /// <typeparam name="T">Destination type: e.g. int</typeparam>
+        /// <seealso cref="GetNames{TEnum}"/>
+        /// <returns>Array of type <typeparamref name="T"/></returns>
         public static T[] GetValues<TEnum, T>() where TEnum : Enum
         {
             return (T[])Enum.GetValues(typeof(TEnum));
         }
+        /// <summary>
+        /// Get the Names available in an Enum
+        /// </summary>
+        /// <example>GetNames<MyEnum>();</example>
+        /// <typeparam name="TEnum">The Enum Type</typeparam>
+        /// <seealso cref="GetValues{TEnum, T}"/>
+        /// <returns>Array of Strings, representing the Enum Options</returns>
         public static string[] GetNames<TEnum>() where TEnum : Enum
         {
             return Enum.GetNames(typeof(TEnum));
